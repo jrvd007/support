@@ -26,4 +26,9 @@ public class Usager extends Model {
         this.username = username;
         this.password = password;
     }
+
+    public static Usager login(String username, String password) {
+        return find("byUsernameAndPassword",
+                    username, password).first();
+    }
 }

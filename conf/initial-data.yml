@@ -24,3 +24,13 @@ Usager(vandoorn):
     bureau: 200
     username: vandoorn
     password: jerempass
+
+Requete(aidezmoi):
+    createur: grinshpun
+    sujet: besoin d'aide
+    description: J'ai vraiment besoin d'aide! Chais pas quoi faire!
+
+Requete(reparezmoi):
+    createur: vandoorn
+    sujet: Réparez-moi.
+    description: Chuis en panne. Réparez-moi svp.

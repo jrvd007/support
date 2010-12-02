@@ -6,3 +6,21 @@ Usager(grinshpun):
     bureau: 11b
     username: grinshpun
     password: pass
+
+Usager(beauchemin):
+    nom: Beauchemin
+    prenom: Cynthia
+    telephone: 514-111-1111
+    courriel: cynt007@hotmail.com
+    bureau: 11a
+    username: beauchemin
+    password: cynthpass
+
+Usager(vandoorn):
+    nom: Van Doorn
+    prenom: Jeremy
+    telephone: 514-222-2222
+    courriel: jrvd007@hotmail.com
+    bureau: 200
+    username: vandoorn
+    password: jerempass

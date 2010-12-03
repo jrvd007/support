@@ -3,6 +3,23 @@
 
 #{if requetes.size() >= 1}
   <div class="requetes">
-    Blah.
+    #{list items:requetes, as: 'requete'}
+      <div class="requete">
+        <div class="createur">
+          %{createur = requete.createur;}%
+          <span class="nom">${createur.prenom} ${createur.nom}</span>
+          (<span class="username">${createur.username}</span>)
+        </div>
+
+        <div class="message">
+          Sujet: <span class="sujet">${requete.sujet}</span>
+          Creation:
+          <span class="date">
+            ${requete.creation.format('dd MMMM yyyy', 'fr')}
+          </span>
+          ${requete.description}
+        </div>
+      </div>
+    #{/list}
   </div>
 #{/if}

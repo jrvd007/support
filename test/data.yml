@@ -29,8 +29,10 @@ Requete(aidezmoi):
     createur: grinshpun
     sujet: besoin d'aide
     description: J'ai vraiment besoin d'aide! Chais pas quoi faire!
+    creation: 2010-01-01
 
 Requete(reparezmoi):
     createur: vandoorn
     sujet: Réparez-moi.
     description: Chuis en panne. Réparez-moi svp.
+    creation: 2010-08-05

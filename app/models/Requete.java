@@ -10,6 +10,9 @@ public class Requete extends Model {
     @ManyToOne
     public Usager createur;
 
+    @ManyToOne
+    public Usager responsable;
+
     public String sujet;
 
     @Lob
@@ -22,5 +25,13 @@ public class Requete extends Model {
         this.sujet = sujet;
         this.description = description;
         this.creation = new Date();
+    }
+
+    public static List<Requete> assignee() {
+        return find("byResponsableIsNotNull").fetch();
+    }
+
+    public static List<Requete> nonAssignee() {
+        return find("byResponsableIsNull").fetch();
     }
 }

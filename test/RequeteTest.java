@@ -15,10 +15,22 @@ public class RequeteTest extends UnitTest {
         Requete aidezmoi = Requete.find("bySujet", "besoin d'aide").first();
         assertNotNull(aidezmoi);
         assertEquals(aidezmoi.description,
-                "J'ai vraiment besoin d'aide! Chais pas quoi faire!");
+                "Mon ordi ne fonctionne plus.");
 
         Usager grinshpun = Usager.find("byNom", "Grinshpun").first();
         assertEquals(aidezmoi.createur, grinshpun);
+    }
+
+    @Test
+    public void retrieveAssignees() {
+        List<Requete> assignees = Requete.assignee();
+        assertEquals(assignees.size(), 2);
+    }
+
+    @Test
+    public void retrieveNonAssignees() {
+        List<Requete> nonAssignees = Requete.nonAssignee();
+        assertEquals(nonAssignees.size(), 1);
     }
 }
 

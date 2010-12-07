@@ -1,24 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Système de Support' /}
+#{set title:'Home' /}
 
-#{if requetes.size() >= 1}
-  <li class="requetes">
-    #{list items:requetes, as: 'requete'}
-      <ul class="requete">
-        <div class="createur">
-          %{createur = requete.createur;}%
-          <span class="nom">${createur.prenom} ${createur.nom}</span>
-          (<a class="username" href="mailto:${createur.courriel}">${createur.username}</a>)
-          <span class="date">
-            ${requete.creation.format('dd MMMM yyyy', 'fr')}
-          </span>
-        </div>
-
-        <div class="message">
-          Sujet: <span class="sujet">${requete.sujet}</span>
-          <p class="messagetext">${requete.description}</p>
-        </div>
-      </ul>
-    #{/list}
-  </li>
-#{/if}
+<a href="@{Application.login()}">S'autentifier</a>
+<a href="@{Application.showRequetes()}">Visualiser la liste des requêtes</a>

@@ -25,6 +25,24 @@ Usager(vandoorn):
     username: vandoorn
     password: jerempass
 
+Technicien(leon):
+    nom: Grynszpan
+    prenom: Leon
+    telephone: 514-333-2020
+    courriel: leon@grynszpan.com
+    bureau: 505
+    username: leon
+    password: grynszpan
+
+Technicien(tech):
+    nom: Techno
+    prenom: Tech
+    telephone: 303-202-1234
+    courriel: billgates@microsoft.com
+    bureau: 666
+    username: bill
+    password: gates
+
 Requete(aidezmoi):
     createur: grinshpun
     responsable: vandoorn

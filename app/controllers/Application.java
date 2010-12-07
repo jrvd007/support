@@ -8,7 +8,18 @@ import java.util.*;
 
 import models.*;
 
+@With(Secure.class)
 public class Application extends Controller {
+
+    @Before
+    static void setConnectedUser() {
+        if(Security.isConnected()) {
+            Usager user = Usager.find("byUsername", Security.connected())
+                                .first();
+            renderArgs.put("user", user);
+            renderArgs.put("isTech", Technicien.class.isInstance(user));
+        }
+    }
 
     public static void index() {
         render();

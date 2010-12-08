@@ -16,7 +16,6 @@ public class Application extends Controller {
             Usager user = Usager.find("byUsername", Security.connected())
                                 .first();
             renderArgs.put("user", user);
-            renderArgs.put("isTech", Technicien.class.isInstance(user));
         }
     }
 

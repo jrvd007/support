@@ -1,17 +1,41 @@
 <!DOCTYPE html>
+
 <html>
     <head>
-        <title>#{get 'title' /} - ${user.username} - ${isTech}</title>
+        <title>#{get 'title' /}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/design.css'}">
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
         #{get 'moreScripts' /}
     </head>
     <body>
-      <h1>Système de Support</h1>
-		<a href="@{Application.pageCreerRequete()}">Créer une requête</a>
-        #{doLayout /}
+	<div id = "main">
+		<div id = "top">
+		<h1><a href="index.html"><img src = "@{'/public/images/logo.png'}" alt = "Logo JCMSystemes" /></a></h1> 
+		<ul id = "menu">
+			<li><a #{if pageselect.equals('index')}class ="active" #{/if} href ="@{Application.index()}"><span>Main</span></a></li>
+			<li><a #{if pageselect.equals('creerRequete')} class = "active" #{/if} href ="@{Application.pageCreerRequete()}"><span>Créer requête</span></a></li>
+			<li><a href =""><span>Endroit3</span></a></li>
+			<li><a href =""><span>Endroit4</span></a></li>
+		</ul>	
+		</div>
+		<div id = "contentwrapper">
+			<div id = "content">
+				<div id ="contentcenter">
+					<h3>#{get 'section' /}</h3>
+		#{doLayout /}
+				<img class = "imagebottom" src="@{'/public/images/content_center_bottom.png'}" alt="" />
+				</div>
+			</div>
+			<img class = "imagebottom" src="@{'/public/images/content_bottom.png'}" alt="" />
+		</div>
+		<div id = "footer">
+		<p>
+			Copyright &copy; JCMSystemes.com.  Tous Droits Réservés.  <a href="mailto: vandoorj@iro.umontreal.ca" title="vandoorj@iro.umontreal.ca" >Contacter Webmestre</a>
+		</p>
+	</div>
+	</div>
     </body>
 </html>

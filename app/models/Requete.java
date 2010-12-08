@@ -27,11 +27,11 @@ public class Requete extends Model {
 
     public Date creation;
     
-    //Categorie categorie;
+    public String categorie;
     //Status status;
 
-    public Requete(Usager createur, Categorie categorie, String sujet, String description) {
-    	//this.categorie = categorie;
+    public Requete(Usager createur, String categorie, String sujet, String description) {
+    	this.categorie = categorie;
     	//this.status = Status.Non_Assignee;
         this.createur = createur;
         this.sujet = sujet;

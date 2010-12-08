@@ -18,12 +18,11 @@ public class Application extends Controller {
             user = Usager.find("byUsername", Security.connected())
                                 .first();
             renderArgs.put("user", user);
-            //renderArgs.put("isTech", Technicien.class.isInstance(user));
         }
     }
 
 	public static void index(){
-		List requetes = Requete.find("byUsername", user.username).fetch();
+		List requetes = Requete.find("byCreateur", user).fetch();
 		render(requetes);
 	}
 	
@@ -31,15 +30,14 @@ public class Application extends Controller {
 		render();
 	}
 
-	public static void creerRequete(String categorie, @Required String sujet, @Required String description){
-		if(validation.hasErrors()){
+	public static void creerRequete(@Required String categorie, @Required String sujet, @Required String description){
+		if(validation.hasErrors() || categorie.equals(""))	{
 			flash.error("Vous avez omis de remplir certains champs!");
 			pageCreerRequete();
 			return;
 		}
-		Requete req = new Requete(user, Requete.Categorie.Autre, sujet, description);
+		Requete req = new Requete(user, categorie, sujet, description);
 		req.save();
 		index();
 	}
-
 }

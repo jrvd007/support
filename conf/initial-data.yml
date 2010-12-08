@@ -46,7 +46,7 @@ Technicien(tech):
 Requete(aidezmoi):
     createur: grinshpun
     responsable: vandoorn
-    sujet: besoin d'aide
+    sujet: "besoin d'aide"
     description: Mon ordi ne fonctionne plus.
     creation: 2010-01-01
 
@@ -60,5 +60,5 @@ Requete(reparezmoi):
 Requete(perdue):
     createur: beauchemin
     sujet: Je suis perdue.
-    description: Je suis complètement perdue. C'est la fin du monde. Pouvez-vous m'aider?
+    description: "Je suis complètement perdue. C'est la fin du monde. Pouvez-vous m'aider?"
     creation: 2010-08-06

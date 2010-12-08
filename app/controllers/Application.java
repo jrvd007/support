@@ -10,23 +10,20 @@ import models.*;
 
 @With(Secure.class)
 public class Application extends Controller {
-
+	private static Usager user;
+	
     @Before
     static void setConnectedUser() {
         if(Security.isConnected()) {
-            Usager user = Usager.find("byUsername", Security.connected())
+            user = Usager.find("byUsername", Security.connected())
                                 .first();
             renderArgs.put("user", user);
-            renderArgs.put("isTech", Technicien.class.isInstance(user));
+            //renderArgs.put("isTech", Technicien.class.isInstance(user));
         }
     }
 
-    public static void index() {
-        render();
-    }
-
-	public static void showRequetes(){
-		List requetes = Requete.findAll();
+	public static void index(){
+		List requetes = Requete.find("byUsername", user.username).fetch();
 		render(requetes);
 	}
 	
@@ -34,8 +31,15 @@ public class Application extends Controller {
 		render();
 	}
 
-	public static void creerRequete(String sujet, String description){
-		long id = Requete.count();
-		render();
+	public static void creerRequete(String categorie, @Required String sujet, @Required String description){
+		if(validation.hasErrors()){
+			flash.error("Vous avez omis de remplir certains champs!");
+			pageCreerRequete();
+			return;
+		}
+		Requete req = new Requete(user, Requete.Categorie.Autre, sujet, description);
+		req.save();
+		index();
 	}
+
 }

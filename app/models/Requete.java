@@ -7,7 +7,7 @@ import play.db.jpa.*;
 
 @Entity
 public class Requete extends Model {
-	static enum Categorie{
+	public static enum Categorie{
 		Logiciel, Systeme, Général, Autre 
 	}
 	static enum Status{
@@ -27,12 +27,12 @@ public class Requete extends Model {
 
     public Date creation;
     
-    Categorie categorie;
-    Status status;
+    //Categorie categorie;
+    //Status status;
 
     public Requete(Usager createur, Categorie categorie, String sujet, String description) {
-    	this.categorie = categorie;
-    	this.status = Status.Non_Assignee;
+    	//this.categorie = categorie;
+    	//this.status = Status.Non_Assignee;
         this.createur = createur;
         this.sujet = sujet;
         this.description = description;

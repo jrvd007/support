@@ -23,7 +23,7 @@ public class Application extends Controller {
         render("Application/index.html", requetes);
     }
 
-    public static void tous() {
+    public static void toutes() {
         index(Requete.findAll());
     }
 

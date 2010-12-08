@@ -3,9 +3,9 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.tous
+GET     /                                       Application.toutes
 
-GET     /requetes/tous                          Application.tous
+GET     /requetes/toutes                        Application.toutes
 GET     /requetes/mes                           Application.mes
 GET     /requetes/assignees                     Application.assignees
 GET     /requetes/non_assignees                 Application.nonAssignees

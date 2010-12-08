@@ -3,13 +3,18 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+GET     /                                       Application.tous
+
+GET     /requetes/tous                          Application.tous
+GET     /requetes/mes                           Application.mes
+GET     /requetes/assignees                     Application.assignees
+GET     /requetes/non_assignees                 Application.nonAssignees
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+#*       /{controller}/{action}                  {controller}.{action}
 
 # Import Secure routes
 *       /                                       module:secure

@@ -9,19 +9,33 @@ import models.*;
 
 @With(Secure.class)
 public class Application extends Controller {
+    private static Usager user;
 
     @Before
     static void setConnectedUser() {
         if(Security.isConnected()) {
-            Usager user = Usager.find("byUsername", Security.connected())
-                                .first();
+            user = Usager.find("byUsername", Security.connected()).first();
             renderArgs.put("user", user);
         }
     }
 
-    public static void index() {
-        List requetes = Requete.findAll();
-        render(requetes);
+    private static void index(List requetes) {
+        render("Application/index.html", requetes);
     }
 
+    public static void tous() {
+        index(Requete.findAll());
+    }
+
+    public static void mes() {
+        index(Requete.find("byCreateur", user).fetch());
+    }
+
+    public static void assignees() {
+        index(Requete.find("byResponsable", user).fetch());
+    }
+
+    public static void nonAssignees() {
+        index(Requete.find("byResponsableIsNull").fetch());
+    }
 }

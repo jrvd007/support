@@ -19,6 +19,9 @@ public class RequeteTest extends UnitTest {
 
         Usager grinshpun = Usager.find("byNom", "Grinshpun").first();
         assertEquals(aidezmoi.createur, grinshpun);
+
+        Requete byCreateur = Requete.find("byCreateur", grinshpun).first();
+        assertEquals(aidezmoi, byCreateur);
     }
 
     @Test

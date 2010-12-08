@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+#{set pageselect:'creerRequete' /}
+#{set section:"Création d'une nouvelle requête" /}
+
+#{if flash.error}
+	<p style="color:#c00">
+		${flash.error}
+	</p>
+#{/if}
+
+<form action="@{Application.creerRequete()}" method="GET">
+	<select name="categorie"> 
+	<option selected value="">Choisissez une catégorie</option>
+	<option value="Logiciel">Logiciel</option> 
+	<option value="Système">Système</option> 
+	<option value="Général">Général</option> 
+	<option value="Autre">Autre</option> 
+	</select><br />
+	Sujet :
+	<input type="text" name="sujet"/><br />
+	Description :<br />
+	<textarea name="description" rows="10" cols="60"></textarea><br />
+	<input type="submit" value="Créer requête!"/><br />
+</form>
+

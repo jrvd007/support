@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.data.validation.*;
 
 import java.util.*;
 
@@ -38,4 +39,18 @@ public class Application extends Controller {
     public static void nonAssignees() {
         index(Requete.find("byResponsableIsNull").fetch());
     }
+	public static void pageCreerRequete(){
+		render();
+	}
+
+	public static void creerRequete(@Required String categorie, @Required String sujet, @Required String description){
+		if(validation.hasErrors() || categorie.equals(""))	{
+			flash.error("Vous avez omis de remplir certains champs!");
+			pageCreerRequete();
+			return;
+		}
+		Requete req = new Requete(user, categorie, sujet, description);
+		req.save();
+		index();
+	}
 }

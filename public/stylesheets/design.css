@@ -1,0 +1,162 @@
+/*Il est a noter que l'inspiration pour le template de ce site web provient en grande partie de www.templateworld.com*/
+
+html
+{
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+body
+{
+	width: 100%;
+	background: #004666 url(../images/body_bg.png) top repeat-x;
+}
+
+#main
+{
+	width: 960px;
+	margin: auto;
+}
+
+#top
+{
+	margin-top: 17px;
+	width: 960px;
+}
+#top h1
+{
+	float: left;
+}
+img
+{
+	border:none;
+}
+
+#menu{
+	float:left;
+	padding:0px 0px 0px 0px;
+	display:block;
+	margin:30px 0px 0px 85px;
+	
+}
+#menu li{
+	float:left;
+	padding:6px 8px 0px 0px;
+	list-style-type: none;
+}
+
+#menu li a{
+	float:left;
+	padding:0px 21px 0px 0px;
+	color:#8e8e8e;
+	font-weight:bold;
+	font-size:14px;
+	background:url(../images/nav-hover.png) right top no-repeat;
+	font-family:Arial;
+	text-decoration: none;
+}
+
+#menu li a span{
+	float:left;
+	display:block;
+	width:auto;
+	height:23px;
+	cursor:pointer;
+	background:url(../images/nav-hover-span.png) left top no-repeat;
+	padding:8px 0px 3px 21px;
+}
+#menu li a:hover, #menu li a.active{
+	color:#fff;
+	background-color:inherit;
+	float:left;
+}
+#menu li a:hover span, #menu li a.active span
+{
+	color:#fff;
+	float:left;
+}
+
+#contentwrapper
+{
+	float: left;
+	width: 960px;
+	background:url(../images/content_top.png) no-repeat top left;
+	padding:11px 0px 0px 0px;
+	/*background: yellow;*/
+}
+
+#content
+{
+	float:left;
+	width:960px;
+	background: #fff;
+	/*background: green;*/
+}
+
+#contentcenter
+{
+	float:left;
+	width:940px;
+	margin: 0px 10px 0px 10px;
+	/*background: red;*/
+}
+
+#contentcenter h3
+{
+	float:left;
+	width:940px;
+	background:url(../images/content_center_top.png) no-repeat top left;
+	color:#424242;
+	height:45px;
+	line-height:25px;
+	font-size:18px;
+	font-weight:bold;
+	padding:10px 0px 0px 20px;
+	margin: 0px 0px 0px 0px;
+}
+
+.requetes
+{
+	float:left;
+	width:938px;
+	border-left:1px solid #eee;
+	border-right:1px solid #eee;
+	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+.imagebottom
+{
+	vertical-align: top;
+}
+
+#contentcenter li
+{
+	list-style-type: none;
+}
+
+#footer
+{
+	float: left;
+	width: 960px;
+	margin: auto;
+	color: white;
+}
+
+#footer p
+{
+	text-align: center;
+}
+
+#footer a
+{
+	text-decoration: underline;
+	color: white;
+}
+
+textarea
+{
+	resize:none;
+}
+
+

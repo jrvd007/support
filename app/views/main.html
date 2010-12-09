@@ -15,8 +15,10 @@
 		<div id = "top">
 		<h1><a href="index.html"><img src = "@{'/public/images/logo.png'}" alt = "Logo JCMSystemes" /></a></h1>
 		<ul id = "menu">
+      *{
 			<li><a #{if pageselect.equals('index')}class ="active" #{/if} href ="@{Application.index()}"><span>Main</span></a></li>
 			<li><a #{if pageselect.equals('creerRequete')} class = "active" #{/if} href ="@{Application.pageCreerRequete()}"><span>Créer requête</span></a></li>
+      }*
 			<li><a href =""><span>Endroit3</span></a></li>
 			<li><a href =""><span>Endroit4</span></a></li>
 		</ul>

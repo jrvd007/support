@@ -8,12 +8,12 @@ import play.db.jpa.*;
 @Entity
 public class Requete extends Model {
 	public static enum Categorie{
-		Logiciel, Systeme, Général, Autre 
+		Logiciel, Systeme, Général, Autre
 	}
 	static enum Status{
-		Non_Assignee, Assignee, Abandon, Succes
+		Ouvert, Abandon, Succes
 	}
-	
+
     @ManyToOne
     public Usager createur;
 
@@ -26,24 +26,29 @@ public class Requete extends Model {
     public String description;
 
     public Date creation;
-    
-    public String categorie;
-    //Status status;
 
-    public Requete(Usager createur, String categorie, String sujet, String description) {
+    public Categorie categorie;
+
+    public Status status;
+
+    public Requete(Usager createur, Categorie categorie, String sujet, String description) {
     	this.categorie = categorie;
-    	//this.status = Status.Non_Assignee;
+    	this.status = Status.Ouvert;
         this.createur = createur;
         this.sujet = sujet;
         this.description = description;
         this.creation = new Date();
     }
 
-    public static List<Requete> assignee() {
+    public static List<Requete> parCreateur(Usager u) {
+        return find("byCreateur", u).fetch();
+    }
+
+    public static List<Requete> assignees() {
         return find("byResponsableIsNotNull").fetch();
     }
 
-    public static List<Requete> nonAssignee() {
+    public static List<Requete> nonAssignees() {
         return find("byResponsableIsNull").fetch();
     }
 }

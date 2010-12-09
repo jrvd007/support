@@ -26,13 +26,13 @@ public class RequeteTest extends UnitTest {
 
     @Test
     public void retrieveAssignees() {
-        List<Requete> assignees = Requete.assignee();
+        List<Requete> assignees = Requete.assignees();
         assertEquals(assignees.size(), 2);
     }
 
     @Test
     public void retrieveNonAssignees() {
-        List<Requete> nonAssignees = Requete.nonAssignee();
+        List<Requete> nonAssignees = Requete.nonAssignees();
         assertEquals(nonAssignees.size(), 1);
     }
 }

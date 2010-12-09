@@ -29,15 +29,15 @@ public class Application extends Controller {
     }
 
     public static void mes() {
-        index(Requete.find("byCreateur", user).fetch());
+        index(Requete.parCreateur(user));
     }
 
     public static void assignees() {
-        index(Requete.find("byResponsable", user).fetch());
+        index(Requete.assignees());
     }
 
     public static void nonAssignees() {
-        index(Requete.find("byResponsableIsNull").fetch());
+        index(Requete.nonAssignees());
     }
 	public static void pageCreerRequete(){
 		render();
@@ -49,8 +49,8 @@ public class Application extends Controller {
 			pageCreerRequete();
 			return;
 		}
-		Requete req = new Requete(user, categorie, sujet, description);
+		Requete req = new Requete(user, Enum.valueOf(Requete.Categorie.class, categorie), sujet, description);
 		req.save();
-		index();
+		mes();
 	}
 }

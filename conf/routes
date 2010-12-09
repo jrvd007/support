@@ -3,12 +3,14 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.toutes
+GET     /                                       Application.mes
 
-GET     /requetes/toutes                        Application.toutes
 GET     /requetes/mes                           Application.mes
 GET     /requetes/assignees                     Application.assignees
 GET     /requetes/non_assignees                 Application.nonAssignees
+
+POST    /requetes/nouvelle                      Application.creerRequete
+GET     /requetes/nouvelle                      Application.nouvelleRequete
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public

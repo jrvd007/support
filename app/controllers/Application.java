@@ -24,10 +24,6 @@ public class Application extends Controller {
         render("Application/index.html", requetes);
     }
 
-    public static void toutes() {
-        index(Requete.findAll());
-    }
-
     public static void mes() {
         index(Requete.parCreateur(user));
     }
@@ -39,14 +35,14 @@ public class Application extends Controller {
     public static void nonAssignees() {
         index(Requete.nonAssignees());
     }
-	public static void pageCreerRequete(){
+	public static void nouvelleRequete(){
 		render();
 	}
 
 	public static void creerRequete(@Required String categorie, @Required String sujet, @Required String description){
 		if(validation.hasErrors() || categorie.equals(""))	{
 			flash.error("Vous avez omis de remplir certains champs!");
-			pageCreerRequete();
+			nouvelleRequete();
 			return;
 		}
 		Requete req = new Requete(user, Enum.valueOf(Requete.Categorie.class, categorie), sujet, description);

@@ -15,12 +15,11 @@
 		<div id = "top">
 		<h1><a href="index.html"><img src = "@{'/public/images/logo.png'}" alt = "Logo JCMSystemes" /></a></h1>
 		<ul id = "menu">
-      *{
-			<li><a #{if pageselect.equals('index')}class ="active" #{/if} href ="@{Application.index()}"><span>Main</span></a></li>
-			<li><a #{if pageselect.equals('creerRequete')} class = "active" #{/if} href ="@{Application.pageCreerRequete()}"><span>Créer requête</span></a></li>
-      }*
-			<li><a href =""><span>Endroit3</span></a></li>
-			<li><a href =""><span>Endroit4</span></a></li>
+      *{ apply class=active to the right element }*
+			<li><a href ="@{Application.nouvelleRequete()}"><span>Créer requête</span></a></li>
+			<li><a href ="@{Application.mes()}"><span>Mes requêtes</span></a></li>
+      <li><a href ="@{Application.assignees()}"><span>Requêtes à traiter</span></a></li>
+      <li><a href ="@{Application.nonAssignees()}"><span>Requêtes non-assignées</span></a></li>
 		</ul>
 		</div>
 		<div id = "contentwrapper">

@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:"Création d'une requête" /}
 #{set pageselect:'creerRequete' /}
 #{set section:"Création d'une nouvelle requête" /}
 
@@ -8,19 +8,20 @@
 		${flash.error}
 	</p>
 #{/if}
-
+<div id = "creation">
 <form action="@{Application.creerRequete()}" method="GET">
-	<select name="categorie"> 
-	<option selected value="">Choisissez une catégorie</option>
-	<option value="Logiciel">Logiciel</option> 
-	<option value="Système">Système</option> 
-	<option value="Général">Général</option> 
-	<option value="Autre">Autre</option> 
+	<select name="categorie" class = "seperate"> 
+	<option value="">Choisissez une catégorie</option>
+	<option #{if categorie.equals("Logiciel")} selected #{/if} value="Logiciel">Logiciel</option> 
+	<option #{if categorie.equals("Système")} selected #{/if} value="Système">Système</option> 
+	<option #{if categorie.equals("Général")} selected #{/if} value="Général">Général</option> 
+	<option #{if categorie.equals("Autre")} selected #{/if} value="Autre">Autre</option> 
 	</select><br />
 	Sujet :
-	<input type="text" name="sujet"/><br />
+	<input type="text" maxlength="100" value="${sujet}" name="sujet" class = "seperate"/><br />
 	Description :<br />
-	<textarea name="description" rows="10" cols="60"></textarea><br />
+	<textarea name="description" rows="10" cols="60" class = "seperate">${description}</textarea><br />
 	<input type="submit" value="Créer requête!"/><br />
 </form>
+</div>
 

@@ -25,6 +25,15 @@ Usager(vandoorn):
     username: vandoorn
     password: jerempass
 
+Usager(haha):
+    nom: Bloup
+    prenom: Le poisson
+    telephone: 123-456-7890
+    courriel: blouplepoisson@danslamer.com
+    bureau: 10
+    username: bloup
+    password: lepoisson
+
 Technicien(leon):
     nom: Grynszpan
     prenom: Leon

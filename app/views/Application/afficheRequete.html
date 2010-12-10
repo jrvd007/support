@@ -1,0 +1,17 @@
+﻿#{extends 'main.html' /}
+#{set title:'Système de Support' /}
+#{set pageselect:'index' /}
+#{if requete!=null}	
+	#{set section: 'Requete #' + requete.id /}
+	<div id ="affichereq">
+	%{createur = requete.createur;}%
+	${requete.sujet}	
+	</div>
+
+#{/if}
+#{else}
+	#{set section: '' /}
+	<script type="text/javascript">
+	//window.location = "@{Application.index()}";
+	</script>
+#{/else}

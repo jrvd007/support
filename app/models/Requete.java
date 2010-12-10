@@ -10,15 +10,13 @@ public class Requete extends Model {
 	public static enum Categorie{
 		Logiciel, Systeme, Général, Autre 
 	}
-	static enum Status{
-		Non_Assignee, Assignee, Abandon, Succes
-	}
+	public static final String Non_Assignee = "Non-assignée", En_Traitement = "En traitement", Succes = "Succes", Abandon = "Abandon"; 
 	
     @ManyToOne
     public Usager createur;
 
     @ManyToOne
-    public Usager responsable;
+    public Usager responsable = null;
 
     public String sujet;
 
@@ -28,11 +26,11 @@ public class Requete extends Model {
     public Date creation;
     
     public String categorie;
-    //Status status;
+    public String statut;
 
     public Requete(Usager createur, String categorie, String sujet, String description) {
     	this.categorie = categorie;
-    	//this.status = Status.Non_Assignee;
+    	this.statut = Non_Assignee;
         this.createur = createur;
         this.sujet = sujet;
         this.description = description;

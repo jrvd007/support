@@ -1,25 +1,40 @@
 #{extends 'main.html' /}
 #{set title:'Système de Support' /}
 #{set pageselect:'index' /}
+#{set section:'Requêtes' /}
 
-#{if requetes.size() >= 1}
-  <li class="requetes">
+#{if requetes==null || requetes.size() == 0}
+	<p class = "aucune">
+	Aucune requête.
+	</p>
+#{/if}
+
+#{if requetes!=null && requetes.size() >= 1}
+	<ul class="requetes">
+	<li class = "requetehead">
+		<span class = "idreq">#</span>
+		<span class = "createur">Créateur</span>
+		<span class = "sujet">Sujet</span>
+		<span class = "categorie">Catégorie</span>
+		<span class = "statut">Statut</span>
+		<span class = "datehead">Date</span>
+	</li>
     #{list items:requetes, as: 'requete'}
-      <ul class="requete">
-        <div class="createur">
-          %{createur = requete.createur;}%
-          <span class="nom">${createur.prenom} ${createur.nom}</span>
-          (<a class="username" href="mailto:${createur.courriel}">${createur.username}</a>)
-          <span class="date">
+		
+        <li class="requete">
+			<a href="@{Application.afficheRequete(requete.id)}" class = "requetea">
+			%{createur = requete.createur;}%
+			<span class = "idreq">${requete.id}</span>
+			<span class = "createur">${createur.prenom} ${createur.nom}</span>
+			%{suj = requete.sujet.length()>20? requete.sujet.substring(0,20)+"..." : requete.sujet;}%
+			<span class = "sujet">${suj}</span>
+			<span class = "categorie">${requete.categorie}</span>
+			<span class = "statut">${requete.statut}</span>
+			<span class = "date">
             ${requete.creation.format('dd MMMM yyyy', 'fr')}
-          </span>
-        </div>
-
-        <div class="message">
-          Sujet: <span class="sujet">${requete.sujet}</span>
-          <p class="messagetext">${requete.description}</p>
-        </div>
-      </ul>
+			</span>
+			</a>
+      </li>
     #{/list}
-  </li>
+  </ul>
 #{/if}

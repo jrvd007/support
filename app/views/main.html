@@ -15,16 +15,45 @@
 		<div id = "top">
 		<h1><a href="index.html"><img src = "@{'/public/images/logo.png'}" alt = "Logo JCMSystemes" /></a></h1> 
 		<ul id = "menu">
-			<li><a #{if pageselect.equals('index')}class ="active" #{/if} href ="@{Application.index()}"><span>Main</span></a></li>
+			<li><a #{if pageselect.equals('index')}class ="active" #{/if} href ="@{Application.index()}"><span>Requêtes</span></a></li>
 			<li><a #{if pageselect.equals('creerRequete')} class = "active" #{/if} href ="@{Application.pageCreerRequete()}"><span>Créer requête</span></a></li>
-			<li><a href =""><span>Endroit3</span></a></li>
-			<li><a href =""><span>Endroit4</span></a></li>
+			#{if user.isTech()}
+			<li><a #{if pageselect.equals('rapport')} class = "active" #{/if} href =""><span>Rapport</span></a></li>
+			#{/if}
+			<li><a href ="logout"><span>Se déconnecter</span></a></li>
 		</ul>	
 		</div>
 		<div id = "contentwrapper">
 			<div id = "content">
 				<div id ="contentcenter">
-					<h3>#{get 'section' /}</h3>
+				<div id ="contentcenter_top">
+				<h3>#{get 'section' /}</h3>
+					#{if requetes != null || choice!= null}
+						<div id = "rightchoose">
+							<form action="@{Application.index()}" method="GET"  name = "chooseView">
+								<select name="choice" onchange="document.chooseView.submit();">
+									<!-- Tous, les siennes, non assignees, assignees, succes, abandon -->
+									#{if user.isTech()}
+									<optgroup label="Toutes les requêtes"/>
+									<option value = "toutsansfiltre" #{if choice.equals("toutsansfiltre")} selected="selected" #{/if}>Toutes</option>
+									<option value = "toutassigne"#{if choice.equals("toutassigne")} selected="selected" #{/if}>Assignées</option>
+									<option value = "toutnonassigne"#{if choice.equals("toutnonassigne")} selected="selected" #{/if}>Non assignées</option>
+									<option value = "toutsucces"#{if choice.equals("toutsucces")} selected="selected" #{/if}>Complétées</option>
+									<option value = "toutabandon"#{if choice.equals("toutabandon")} selected="selected" #{/if}>Abandonnées</option>
+									</optgroup>
+									#{/if}
+									<optgroup label="Mes requêtes">
+									<option value = "sansfiltre"#{if choice.equals("sansfiltre")} selected="selected" #{/if}>Toutes</option>
+									<option value = "assigne"#{if choice.equals("assigne")} selected="selected" #{/if}>Assignées</option>
+									<option value = "nonassigne"#{if choice.equals("nonassigne")} selected="selected" #{/if}>Non assignées</option>
+									<option value = "succes"#{if choice.equals("succes")} selected="selected" #{/if}>Complétées</option>
+									<option value = "abandon"#{if choice.equals("abandon")} selected="selected" #{/if}>Abandonnées</option>
+									</optgroup>
+								</select>
+							</form>
+						</div>
+					#{/if}
+				</div>
 		#{doLayout /}
 				<img class = "imagebottom" src="@{'/public/images/content_center_bottom.png'}" alt="" />
 				</div>

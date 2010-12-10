@@ -28,10 +28,12 @@ public class Application extends Controller {
         index(Requete.parCreateur(user));
     }
 
+    @Check("isTechnicien")
     public static void assignees() {
         index(Requete.assignees(user));
     }
 
+    @Check("isTechnicien")
     public static void nonAssignees() {
         index(Requete.nonAssignees());
     }

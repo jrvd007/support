@@ -27,27 +27,15 @@
 				<h3>#{get 'section' /}</h3>
 					#{if requetes != null || choice!= null}
 						<div id = "rightchoose">
-							<form action="@{Application.mes()}" method="GET"  name = "chooseView">
-								<select name="choice" onchange="document.chooseView.submit();">
-									<!-- Tous, les siennes, non assignees, assignees, succes, abandon -->
-									#{if user.isTech()}
-									<optgroup label="Toutes les requêtes"/>
-									<option value = "toutsansfiltre" #{if choice.equals("toutsansfiltre")} selected="selected" #{/if}>Toutes</option>
-									<option value = "toutassigne"#{if choice.equals("toutassigne")} selected="selected" #{/if}>Assignées</option>
-									<option value = "toutnonassigne"#{if choice.equals("toutnonassigne")} selected="selected" #{/if}>Non assignées</option>
-									<option value = "toutsucces"#{if choice.equals("toutsucces")} selected="selected" #{/if}>Complétées</option>
-									<option value = "toutabandon"#{if choice.equals("toutabandon")} selected="selected" #{/if}>Abandonnées</option>
-									</optgroup>
-									#{/if}
-									<optgroup label="Mes requêtes">
-									<option value = "sansfiltre"#{if choice.equals("sansfiltre")} selected="selected" #{/if}>Toutes</option>
-									<option value = "assigne"#{if choice.equals("assigne")} selected="selected" #{/if}>Assignées</option>
-									<option value = "nonassigne"#{if choice.equals("nonassigne")} selected="selected" #{/if}>Non assignées</option>
-									<option value = "succes"#{if choice.equals("succes")} selected="selected" #{/if}>Complétées</option>
-									<option value = "abandon"#{if choice.equals("abandon")} selected="selected" #{/if}>Abandonnées</option>
-									</optgroup>
+              #{secure.check 'isTechnicien'}
+							<form name="chooseView" action="@{Application.chooseView()}" method="GET">
+                <select name="view" onchange="document.chooseView.submit();">
+									<option value = "mes">Mes requêtes</option>
+									<option value = "assignees">Mes assignations</option>
+									<option value = "nonAssignees">Non assignées</option>
 								</select>
 							</form>
+              #{/secure.check}
 						</div>
 					#{/if}
 				</div>

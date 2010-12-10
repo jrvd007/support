@@ -28,6 +28,11 @@ public class Application extends Controller {
         list(Requete.parCreateur(user));
     }
 
+    public static void chooseView(String view) {
+        System.out.println(view);
+        redirect(Router.reverse("Application." + view).url);
+    }
+
     @Check("isTechnicien")
     public static void assignees() {
         list(Requete.assignees(user));

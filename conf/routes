@@ -6,6 +6,7 @@ GET     /requetes/mes                           Application.mes
 GET     /requetes/assignees                     Application.assignees
 GET     /requetes/non_assignees                 Application.nonAssignees
 GET     /                                       Application.mes
+GET     /requetes/choose_view                   Application.chooseView
 
 POST    /requetes/nouvelle                      Application.creerRequete
 GET     /requetes/nouvelle                      Application.nouvelleRequete

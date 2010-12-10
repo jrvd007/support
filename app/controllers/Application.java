@@ -20,22 +20,22 @@ public class Application extends Controller {
         }
     }
 
-    private static void index(List requetes) {
-        render("Application/index.html", requetes);
+    private static void list(List requetes) {
+        render("Application/list.html", requetes);
     }
 
     public static void mes() {
-        index(Requete.parCreateur(user));
+        list(Requete.parCreateur(user));
     }
 
     @Check("isTechnicien")
     public static void assignees() {
-        index(Requete.assignees(user));
+        list(Requete.assignees(user));
     }
 
     @Check("isTechnicien")
     public static void nonAssignees() {
-        index(Requete.nonAssignees());
+        list(Requete.nonAssignees());
     }
 
 	public static void nouvelleRequete(){

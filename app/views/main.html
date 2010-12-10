@@ -17,8 +17,10 @@
 		<ul id = "menu">
 			<li><a href ="@{Application.nouvelleRequete()}"><span>Créer requête</span></a></li>
 			<li><a href ="@{Application.mes()}"><span>Mes requêtes</span></a></li>
-      <li><a href ="@{Application.assignees()}"><span>Requêtes à traiter</span></a></li>
-      <li><a href ="@{Application.nonAssignees()}"><span>Requêtes non-assignées</span></a></li>
+      #{secure.check 'isTechnicien'}
+        <li><a href ="@{Application.assignees()}"><span>Requêtes à traiter</span></a></li>
+        <li><a href ="@{Application.nonAssignees()}"><span>Requêtes non-assignées</span></a></li>
+      #{/secure.check}
       <li><a href ="@{Secure.logout()}"><span>logout</span></a></li>
 		</ul>
 		</div>

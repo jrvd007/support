@@ -10,8 +10,12 @@ GET     /                                       Application.mes
 POST    /requetes/nouvelle                      Application.creerRequete
 GET     /requetes/nouvelle                      Application.nouvelleRequete
 
+POST    /requetes/commentaire                   Application.commentaire
+POST    /requetes/upload                        Application.upload
+
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
+GET     /uploads/                               staticDir:uploads
 
 # Catch all
 #*       /{controller}/{action}                  {controller}.{action}

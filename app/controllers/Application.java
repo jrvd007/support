@@ -54,4 +54,24 @@ public class Application extends Controller {
 		req.save();
 		mes();
 	}
+
+    public static void commentaire(@Required long requete_id, @Required String text) {
+        Requete req = Requete.findById(requete_id);
+        req.addCommentaire(text);
+        mes();
+    }
+
+    public static void upload(@Required long requete_id, @Required java.io.File newFile) {
+        Requete req = Requete.findById(requete_id);
+        Fichier fichier = new Fichier();
+        fichier.save(); // HACK - generate an id. See note in models/Fichier.java
+        System.out.println(fichier.id);
+        System.out.println(newFile);
+        newFile.renameTo(publicplace);
+        fichier.file(newFile);
+        System.out.println(newFile);
+        fichier.save();
+        //req.addFile(newFile);
+        mes();
+    }
 }

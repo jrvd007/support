@@ -2,34 +2,54 @@
 #{set title:'Système de Support' /}
 
 #{if requetes.size() >= 1}
-  <li class="requetes">
-    #{list items:requetes, as: 'requete'}
-      <ul class="requete" id="requete_${requete.id}">
-        <div class="createur">
-          %{createur = requete.createur;}%
-          <span class="nom">${createur.prenom} ${createur.nom}</span>
-          (<a class="username" href="mailto:${createur.courriel}">${createur.username}</a>)
-          <span class="date">
-            ${requete.creation.format('dd MMMM yyyy', 'fr')}
-          </span>
-        </div>
-          Technicien: <span class="technicien">
-            ${requete?.responsable ?: "non-assigné"}
-          </span>
-        <div class="message">
-          Sujet: <span class="sujet">${requete.sujet}</span>
-          <p class="messagetext">${requete.description}</p>
-        </div>
-        <li class="commentaires">
-          #{list items:requete.commentaires, as: 'commentaire'}
-            <ul class="commentaire" id="commentaire_${commentaire.id}">
-              <span class="date">${commentaire.date.format('dd MMMM yyyy', 'fr')}</span>
-              :
-              <span class="commentaire_text">${commentaire.text}</span>
-            </ul>
-          #{/list}
-        </li>
+<li class="requetes">
+  #{list items:requetes, as: 'requete'}
+  <ul class="requete" id="requete_${requete.id}">
+    <div class="createur">
+      %{createur = requete.createur;}%
+      <span class="nom">${createur.prenom} ${createur.nom}</span>
+      (<a class="username" href="mailto:${createur.courriel}">${createur.username}</a>)
+      <span class="date">
+        ${requete.creation.format('dd MMMM yyyy', 'fr')}
+      </span>
+    </div>
+      Technicien: <span class="technicien">
+        ${requete?.responsable ?: "non-assigné"}
+      </span>
+    <div class="message">
+      Catégorie: <span class="categorie">${requete.categorie}</span><br />
+      Sujet: <span class="sujet">${requete.sujet}</span>
+      <p class="messagetext">${requete.description}</p>
+    </div>
+
+    #{if requete.createur == user}
+    <form action="@{Application.upload()}" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="requete_id" value="${requete.id}" />
+      <input type="file" id="newFile" name="newFile" />
+      <input type="submit" value="Ajouter un fichier" />
+    </form>
+    #{/if}
+
+    #{if requete.createur == user}
+    <form id="nouveauCommentaire" action="@{Application.commentaire()}" method="POST">
+        <input type="hidden" name="requete_id" value="${requete.id}" />
+        <textarea name="text" id="commentaireText" rows=3 cols=40>Nouveau commentaire.</textarea>
+      <input type="submit" value="Ajouter commentaire" />
+      </form>
+    #{/if}
+
+    #{if requete.commentaires.size() >= 1}
+    <li class="commentaires">
+      #{list items:requete.commentaires, as: 'commentaire'}
+      <ul class="commentaire" id="commentaire_${commentaire.id}">
+        <span class="date">${commentaire.date.format('dd MMMM yyyy', 'fr')}</span>
+        :
+        <span class="commentaire_text">${commentaire.text}</span>
       </ul>
-    #{/list}
-  </li>
+      #{/list}
+    </li>
+    #{/if}
+  </ul>
+  #{/list}
+</li>
 #{/if}

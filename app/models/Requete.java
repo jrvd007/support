@@ -31,6 +31,9 @@ public class Requete extends Model {
     @OneToMany(cascade = CascadeType.ALL)
     public List<Commentaire> commentaires;
 
+    @OneToMany
+    public List<Fichier> fichiers;
+
     public Requete(Usager createur, Categorie categorie,
                    String sujet, String description) {
     	this.categorie = categorie;
@@ -59,5 +62,4 @@ public class Requete extends Model {
         save();
         return commentaire;
     }
-
 }

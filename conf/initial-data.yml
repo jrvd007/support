@@ -69,6 +69,7 @@ Commentaire(serieux):
 Requete(perdue):
     createur: beauchemin
     sujet: Je suis perdue.
+    categorie: Requete.Categorie 'Général'
     description: "Je suis complètement perdue. C'est la fin du monde. Pouvez-vous m'aider?"
     creation: 2010-08-06
     commentaires: [toujours, serieux]

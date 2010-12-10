@@ -2,23 +2,22 @@
 #{set title:'Home' /}
 #{set section:"Création d'une nouvelle requête" /}
 
-#{if flash.error}
-	<p style="color:#c00">
-		${flash.error}
-	</p>
-#{/if}
-
 <form action="@{Application.creerRequete()}" method="POST">
 	<select name="categorie">
     <option selected value="">Choisissez une catégorie</option>
     #{list items:categories, as: 'categorie'}
       <option value="${categorie}">${categorie}</option>
     #{/list}
-    </select><br />
+  </select>
+  <span class="error">#{error 'categorie' /}</span><br />
 	Sujet :
-	<input type="text" name="sujet"/><br />
-	Description :<br />
-	<textarea name="description" rows="10" cols="60"></textarea><br />
+  <input type="text" name="sujet" value="${flash.sujet}"/>
+  <span class="error">#{error 'sujet' /}</span>
+  <br />
+  Description :<span class="error">#{error 'description' /}</span><br />
+  <textarea name="description" rows="10" cols="60">
+  ${flash.description}
+  </textarea><br />
 	<input type="submit" value="Créer requête!"/><br />
 </form>
 

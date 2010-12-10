@@ -44,11 +44,12 @@ public class Application extends Controller {
 	}
 
 	public static void creerRequete(@Required String categorie, @Required String sujet, @Required String description){
-		if(validation.hasErrors() || categorie.equals(""))	{
-			flash.error("Vous avez omis de remplir certains champs!");
+		if(validation.hasErrors())	{
+            params.flash();
+            validation.keep();
 			nouvelleRequete();
-			return;
 		}
+
 		Requete req = new Requete(user, Enum.valueOf(Requete.Categorie.class, categorie), sujet, description);
 		req.save();
 		mes();

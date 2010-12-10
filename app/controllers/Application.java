@@ -37,7 +37,9 @@ public class Application extends Controller {
     public static void nonAssignees() {
         index(Requete.nonAssignees());
     }
+
 	public static void nouvelleRequete(){
+        renderArgs.put("categories", Requete.Categorie.values());
 		render();
 	}
 

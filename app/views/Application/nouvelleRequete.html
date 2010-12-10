@@ -1,6 +1,5 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
-#{set pageselect:'creerRequete' /}
 #{set section:"Création d'une nouvelle requête" /}
 
 #{if flash.error}
@@ -9,14 +8,13 @@
 	</p>
 #{/if}
 
-<form action="@{Application.creerRequete()}" method="GET">
-	<select name="categorie"> 
-	<option selected value="">Choisissez une catégorie</option>
-	<option value="Logiciel">Logiciel</option> 
-	<option value="Système">Système</option> 
-	<option value="Général">Général</option> 
-	<option value="Autre">Autre</option> 
-	</select><br />
+<form action="@{Application.creerRequete()}" method="POST">
+	<select name="categorie">
+    <option selected value="">Choisissez une catégorie</option>
+    #{list items:categories, as: 'categorie'}
+      <option value="${categorie}">${categorie}</option>
+    #{/list}
+    </select><br />
 	Sujet :
 	<input type="text" name="sujet"/><br />
 	Description :<br />

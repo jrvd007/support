@@ -67,11 +67,16 @@ public class Application extends Controller {
         fichier.save(); // HACK - generate an id. See note in models/Fichier.java
         System.out.println(fichier.id);
         System.out.println(newFile);
+
+        /*
+        //String location
         newFile.renameTo(publicplace);
         fichier.file(newFile);
         System.out.println(newFile);
         fichier.save();
         //req.addFile(newFile);
+        */
+
         mes();
     }
 }

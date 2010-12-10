@@ -4,7 +4,7 @@
 #{if requetes.size() >= 1}
   <li class="requetes">
     #{list items:requetes, as: 'requete'}
-      <ul class="requete">
+      <ul class="requete" id="requete_${requete.id}">
         <div class="createur">
           %{createur = requete.createur;}%
           <span class="nom">${createur.prenom} ${createur.nom}</span>
@@ -14,12 +14,21 @@
           </span>
         </div>
           Technicien: <span class="technicien">
-            ${requete.responsable.username ?: "non-assigné"}
+            ${requete?.responsable ?: "non-assigné"}
           </span>
         <div class="message">
           Sujet: <span class="sujet">${requete.sujet}</span>
           <p class="messagetext">${requete.description}</p>
         </div>
+        <li class="commentaires">
+          #{list items:requete.commentaires, as: 'commentaire'}
+            <ul class="commentaire" id="commentaire_${commentaire.id}">
+              <span class="date">${commentaire.date.format('dd MMMM yyyy', 'fr')}</span>
+              :
+              <span class="commentaire_text">${commentaire.text}</span>
+            </ul>
+          #{/list}
+        </li>
       </ul>
     #{/list}
   </li>

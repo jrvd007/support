@@ -11,16 +11,6 @@ public class Requete extends Model {
 		Logiciel, Système, Général, Autre
 	}
 
-    @Entity
-    public static class Commentaire extends Model {
-        public String text;
-        public Date date;
-        public Commentaire(String text) {
-            this.text = text;
-            this.date = new Date();
-        }
-    }
-
     @ManyToOne
     public Usager createur;
 

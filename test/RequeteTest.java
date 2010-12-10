@@ -26,14 +26,23 @@ public class RequeteTest extends UnitTest {
 
     @Test
     public void retrieveAssignees() {
-        List<Requete> assignees = Requete.assignees();
-        assertEquals(assignees.size(), 2);
+        Usager vandoorn = Usager.find("byUsername", "vandoorn").first();
+        List<Requete> assignees = Requete.assignees(vandoorn);
+        assertEquals(assignees.size(), 1);
+        // verify properties or add more?
     }
 
     @Test
     public void retrieveNonAssignees() {
         List<Requete> nonAssignees = Requete.nonAssignees();
         assertEquals(nonAssignees.size(), 1);
+    }
+
+    @Test
+    public void getCommentaires() {
+        Requete requete = Requete.find("bySujet", "Je suis perdue.").first();
+        assertEquals(requete.commentaires.size(), 2);
+        assertEquals(requete.commentaires.get(0).text, "Je suis toujours très perdue.");
     }
 }
 

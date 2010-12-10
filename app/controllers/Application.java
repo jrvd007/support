@@ -29,7 +29,7 @@ public class Application extends Controller {
     }
 
     public static void assignees() {
-        index(Requete.assignees());
+        index(Requete.assignees(user));
     }
 
     public static void nonAssignees() {

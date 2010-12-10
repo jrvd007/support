@@ -44,8 +44,8 @@ public class Requete extends Model {
         return find("byCreateur", u).fetch();
     }
 
-    public static List<Requete> assignees() {
-        return find("byResponsableIsNotNull").fetch();
+    public static List<Requete> assignees(Usager u) {
+        return find("byResponsable", u).fetch();
     }
 
     public static List<Requete> nonAssignees() {

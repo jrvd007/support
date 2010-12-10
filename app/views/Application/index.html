@@ -13,7 +13,9 @@
             ${requete.creation.format('dd MMMM yyyy', 'fr')}
           </span>
         </div>
-
+          Technicien: <span class="technicien">
+            ${requete.responsable.username ?: "non-assigné"}
+          </span>
         <div class="message">
           Sujet: <span class="sujet">${requete.sujet}</span>
           <p class="messagetext">${requete.description}</p>

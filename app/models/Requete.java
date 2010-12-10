@@ -7,14 +7,9 @@ import play.db.jpa.*;
 
 @Entity
 public class Requete extends Model {
-	public static enum Categorie{
+	public static enum Categorie {
 		Logiciel, Système, Général, Autre
 	}
-    /*
-	static enum Status{
-		Ouvert, Abandon, Succes
-	}
-    */
 
     @ManyToOne
     public Usager createur;
@@ -31,11 +26,11 @@ public class Requete extends Model {
 
     public Categorie categorie;
 
-    //public Status status;
+    public Boolean ouvert;
 
     public Requete(Usager createur, Categorie categorie, String sujet, String description) {
     	this.categorie = categorie;
-    	//this.status = Status.Ouvert;
+    	this.ouvert = true;
         this.createur = createur;
         this.sujet = sujet;
         this.description = description;

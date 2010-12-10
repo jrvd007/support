@@ -2,12 +2,10 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                                       Application.mes
-
 GET     /requetes/mes                           Application.mes
 GET     /requetes/assignees                     Application.assignees
 GET     /requetes/non_assignees                 Application.nonAssignees
+GET     /                                       Application.mes
 
 POST    /requetes/nouvelle                      Application.creerRequete
 GET     /requetes/nouvelle                      Application.nouvelleRequete

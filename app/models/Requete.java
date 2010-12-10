@@ -11,6 +11,16 @@ public class Requete extends Model {
 		Logiciel, Système, Général, Autre
 	}
 
+    @Entity
+    public static class Commentaire extends Model {
+        public String text;
+        public Date date;
+        public Commentaire(String text) {
+            this.text = text;
+            this.date = new Date();
+        }
+    }
+
     @ManyToOne
     public Usager createur;
 
@@ -28,7 +38,11 @@ public class Requete extends Model {
 
     public Boolean ouvert;
 
-    public Requete(Usager createur, Categorie categorie, String sujet, String description) {
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<Commentaire> commentaires;
+
+    public Requete(Usager createur, Categorie categorie,
+                   String sujet, String description) {
     	this.categorie = categorie;
     	this.ouvert = true;
         this.createur = createur;
@@ -48,4 +62,12 @@ public class Requete extends Model {
     public static List<Requete> nonAssignees() {
         return find("byResponsableIsNull").fetch();
     }
+
+    public Commentaire addCommentaire(String text) {
+        Commentaire commentaire = new Commentaire(text);
+        commentaires.add(commentaire);
+        save();
+        return commentaire;
+    }
+
 }

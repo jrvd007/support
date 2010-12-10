@@ -1,55 +1,39 @@
 #{extends 'main.html' /}
 #{set title:'Système de Support' /}
+#{set section:'Requêtes' /}
 
-#{if requetes.size() >= 1}
-<li class="requetes">
-  #{list items:requetes, as: 'requete'}
-  <ul class="requete" id="requete_${requete.id}">
-    <div class="createur">
-      %{createur = requete.createur;}%
-      <span class="nom">${createur.prenom} ${createur.nom}</span>
-      (<a class="username" href="mailto:${createur.courriel}">${createur.username}</a>)
-      <span class="date">
-        ${requete.creation.format('dd MMMM yyyy', 'fr')}
-      </span>
-    </div>
-      Technicien: <span class="technicien">
-        ${requete?.responsable ?: "non-assigné"}
-      </span>
-    <div class="message">
-      Catégorie: <span class="categorie">${requete.categorie}</span><br />
-      Sujet: <span class="sujet">${requete.sujet}</span>
-      <p class="messagetext">${requete.description}</p>
-    </div>
+#{if requetes==null || requetes.size() == 0}
+	<p class = "aucune">
+	Aucune requête.
+	</p>
+#{/if}
 
-    #{if requete.createur == user}
-    <form action="@{Application.upload()}" method="POST" enctype="multipart/form-data">
-      <input type="hidden" name="requete_id" value="${requete.id}" />
-      <input type="file" id="newFile" name="newFile" />
-      <input type="submit" value="Ajouter un fichier" />
-    </form>
-    #{/if}
+#{if requetes!=null && requetes.size() >= 1}
+	<ul class="requetes">
+	<li class = "requetehead">
+		<span class = "idreq">#</span>
+		<span class = "createur">Créateur</span>
+		<span class = "sujet">Sujet</span>
+		<span class = "categorie">Catégorie</span>
+		<span class = "statut">Statut</span>
+		<span class = "datehead">Date</span>
+	</li>
+    #{list items:requetes, as: 'requete'}
 
-    #{if requete.createur == user}
-    <form id="nouveauCommentaire" action="@{Application.commentaire()}" method="POST">
-        <input type="hidden" name="requete_id" value="${requete.id}" />
-        <textarea name="text" id="commentaireText" rows=3 cols=40>Nouveau commentaire.</textarea>
-      <input type="submit" value="Ajouter commentaire" />
-      </form>
-    #{/if}
-
-    #{if requete.commentaires.size() >= 1}
-    <li class="commentaires">
-      #{list items:requete.commentaires, as: 'commentaire'}
-      <ul class="commentaire" id="commentaire_${commentaire.id}">
-        <span class="date">${commentaire.date.format('dd MMMM yyyy', 'fr')}</span>
-        :
-        <span class="commentaire_text">${commentaire.text}</span>
-      </ul>
-      #{/list}
-    </li>
-    #{/if}
+        <li class="requete">
+			<a href="" class = "requetea">
+			%{createur = requete.createur;}%
+			<span class = "idreq">${requete.id}</span>
+			<span class = "createur">${createur.prenom} ${createur.nom}</span>
+			%{suj = requete.sujet.length()>20? requete.sujet.substring(0,20)+"..." : requete.sujet;}%
+			<span class = "sujet">${suj}</span>
+			<span class = "categorie">${requete.categorie}</span>
+			<span class = "statut">${requete.statut?: "Non Assignée"}</span>
+			<span class = "date">
+            ${requete.creation.format('dd MMMM yyyy', 'fr')}
+			</span>
+			</a>
+      </li>
+    #{/list}
   </ul>
-  #{/list}
-</li>
 #{/if}

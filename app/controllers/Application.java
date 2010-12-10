@@ -55,6 +55,21 @@ public class Application extends Controller {
 		mes();
 	}
 
+	public static void afficheRequete(Long id)
+	{
+		Requete requete = Requete.find("byId",id).first();
+		if(requete == null)
+		{
+			list(null);
+			return;
+		}
+		else
+		{
+		render(requete);
+		return;
+		}
+	}
+
     public static void commentaire(@Required long requete_id, @Required String text) {
         Requete req = Requete.findById(requete_id);
         req.addCommentaire(text);

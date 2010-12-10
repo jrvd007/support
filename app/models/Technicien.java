@@ -9,4 +9,8 @@ public class Technicien extends Usager {
             String password) {
         super(nom, prenom, telephone, courriel, bureau, username, password);
     }
+    
+    public boolean isTech(){
+    	return true;
+    }
 }

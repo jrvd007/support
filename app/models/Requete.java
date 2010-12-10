@@ -11,6 +11,10 @@ public class Requete extends Model {
 		Logiciel, Système, Général, Autre
 	}
 
+    public static enum Statut {
+        Assignée, Completée, Abandonnée
+    }
+
     @ManyToOne
     public Usager createur;
 
@@ -26,7 +30,7 @@ public class Requete extends Model {
 
     public Categorie categorie;
 
-    public Boolean ouvert;
+    public Statut statut;
 
     @OneToMany(cascade = CascadeType.ALL)
     public List<Commentaire> commentaires;
@@ -37,7 +41,6 @@ public class Requete extends Model {
     public Requete(Usager createur, Categorie categorie,
                    String sujet, String description) {
     	this.categorie = categorie;
-    	this.ouvert = true;
         this.createur = createur;
         this.sujet = sujet;
         this.description = description;

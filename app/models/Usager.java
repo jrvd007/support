@@ -31,4 +31,8 @@ public class Usager extends Model {
         return find("byUsernameAndPassword",
                     username, password).first();
     }
+    
+    public boolean isTech(){
+    	return false;
+    }
 }

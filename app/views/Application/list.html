@@ -2,6 +2,7 @@
 #{set title:'Système de Support' /}
 #{set section:'Requêtes' /}
 
+
 #{if requetes==null || requetes.size() == 0}
 	<p class = "aucune">
 	Aucune requête.
@@ -9,31 +10,43 @@
 #{/if}
 
 #{if requetes!=null && requetes.size() >= 1}
-	<ul class="requetes">
+	<div id = "accordion">
+	<ul class = "requetes">
+	<div class = "seperation">
 	<li class = "requetehead">
-		<span class = "idreq">#</span>
+		<span class = "idreqhead">#</span>
 		<span class = "createur">Créateur</span>
 		<span class = "sujet">Sujet</span>
 		<span class = "categorie">Catégorie</span>
 		<span class = "statut">Statut</span>
 		<span class = "datehead">Date</span>
 	</li>
+	</div>
     #{list items:requetes, as: 'requete'}
-
-        <li class="requete">
-			<a href="" class = "requetea">
-			%{createur = requete.createur;}%
-			<span class = "idreq">${requete.id}</span>
-			<span class = "createur">${createur.prenom} ${createur.nom}</span>
-			%{suj = requete.sujet.length()>20? requete.sujet.substring(0,20)+"..." : requete.sujet;}%
-			<span class = "sujet">${suj}</span>
-			<span class = "categorie">${requete.categorie}</span>
-			<span class = "statut">${requete.statut?: "Non Assignée"}</span>
-			<span class = "date">
-            ${requete.creation.format('dd MMMM yyyy', 'fr')}
-			</span>
+	<div class = "seperation">
+        <li class="header">
+			<a href="#" class = "requetea">
+				%{createur = requete.createur;}%
+				<span class = "idreq">${requete.id}</span>
+				<span class = "createur">${createur.prenom} ${createur.nom}</span>
+				%{suj = requete.sujet.length()>20? requete.sujet.substring(0,20)+"..." : requete.sujet;}%
+				<span class = "sujet">${suj}</span>
+				<span class = "categorie">${requete.categorie}</span>
+				<span class = "statut">${requete.statut?: "Non Assignée"}</span>
+				<span class = "date">
+            			${requete.creation.format('dd MMMM yyyy', 'fr')}
+				</span>
 			</a>
-      </li>
+ 	</li>
+	<div class = "floatleft"><p>This is a test</p></div>
+	</div>
     #{/list}
-  </ul>
+	</ul>
+	</div>
 #{/if}
+
+<script>
+	$(function() {
+		$( "#accordion" ).accordion({ header: 'li.header', collapsible: true });
+	});
+</script>

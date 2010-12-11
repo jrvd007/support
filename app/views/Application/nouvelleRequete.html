@@ -2,8 +2,9 @@
 #{set title:'Home' /}
 #{set section:"Création d'une nouvelle requête" /}
 
+<div id = "creation">
 <form action="@{Application.creerRequete()}" method="POST">
-	<select name="categorie">
+	<select name="categorie" class = "seperate">
     <option selected value="">Choisissez une catégorie</option>
     #{list items:categories, as: 'categorie'}
       <option value="${categorie}">${categorie}</option>
@@ -11,13 +12,13 @@
   </select>
   <span class="error">#{error 'categorie' /}</span><br />
 	Sujet :
-  <input type="text" name="sujet" value="${flash.sujet}"/>
+  <input type="text" name="sujet" value="${flash.sujet}" class = "seperate"/>
   <span class="error">#{error 'sujet' /}</span>
   <br />
   Description :<span class="error">#{error 'description' /}</span><br />
-  <textarea name="description" rows="10" cols="60">
+  <textarea name="description" rows="10" cols="60" class = "seperate">
   ${flash.description}
   </textarea><br />
 	<input type="submit" value="Créer requête!"/><br />
 </form>
-
+</div>

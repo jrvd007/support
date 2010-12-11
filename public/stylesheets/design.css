@@ -1,4 +1,4 @@
-/*Il est a noter que l'inspiration pour le template de ce site web provient en grande partie de www.templateworld.com*/
+re/*Il est a noter que l'inspiration pour le template de ce site web provient en grande partie de www.templateworld.com*/
 
 html
 {
@@ -262,4 +262,10 @@ textarea
 .seperate
 {
 	margin-bottom: 10px;
+}
+
+.error
+{
+	color: red;
+	margin-left: 10px;
 }

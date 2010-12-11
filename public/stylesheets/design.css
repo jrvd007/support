@@ -1,4 +1,4 @@
-re/*Il est a noter que l'inspiration pour le template de ce site web provient en grande partie de www.templateworld.com*/
+/*Il est a noter que l'inspiration pour le template de ce site web provient en grande partie de www.templateworld.com*/
 
 html
 {
@@ -125,7 +125,7 @@ img
 	margin: 10px 20px 0px 0px;
 }
 
-.requetes,.aucune,#creation
+#accordion,.aucune,#creation
 {
 	float:left;
 	width:938px;
@@ -140,32 +140,34 @@ img
 	margin: 0px 0px 0px 10px;
 }
 
-.requete,.requetehead
+.requetehead
 {
 	float: left;
 	width: 920px;
 	height: 30px;
-	margin-left: 10px;
-	margin-bottom: 8px;
 	font-size: 0.9em;
-}
-
-.requetehead
-{
 	background: url(../images/requetes2.png) no-repeat top left;
 	font-weight: bold;
 	text-decoration: underline;
 }
 
+.requetehead span
+{
+	margin-top:6px;
+}
+
 .requetea
 {
-	float:left;
+	width: 880px;
+	margin: auto;
+	float: left;
+}
+
+
+.requetes
+{
 	width: 920px;
-	height: 30px;
 	margin:auto;
-	text-decoration: none;
-	color: black;
-	background: url(../images/requetes2.png) no-repeat top left;
 }
 
 .aucune
@@ -175,45 +177,51 @@ img
 	text-align: center;
 }
 
-.createur,.sujet,.categorie,.statut,.idreq
-{
-	float:left;
-	margin-top: 6px;
-}
 
 .idreq
 {
 	width: 35px;
-	margin-left: 15px;
+	float: left;
+}
+
+.idreqhead
+{
+	margin-left: 34px;
+	width: 35px;
+	float: left;
 }
 
 .createur
 {
-	width: 200px;
+	float: left;
+	width: 190px;
 }
 
 .sujet
 {
-	width: 310px;
+	float: left;
+	width: 300px;
 }
 
 .categorie
 {
+	float: left;
 	width: 95px;
 }
 
 .statut
 {
+	float: left;
 	width: 105px;
 }
+
 
 .date
 {
 	float: right;
 	text-align: right;
-	margin-top:6px;
 	width: 145px;
-	margin-right: 15px;
+	margin-right: 10px;
 }
 .datehead
 {
@@ -268,4 +276,30 @@ textarea
 {
 	color: red;
 	margin-left: 10px;
+}
+
+
+#accordion ul
+{
+	margin-left: 10px;
+	padding-left: 0px;
+	width: 920px;
+	float: left;
+}
+
+.floatleft
+{
+	float: left;
+	width: 856px;
+}
+
+.seperation
+{
+	float: left;
+	margin-bottom: 5px;
+}
+
+#accordion li
+{
+	float: left;
 }

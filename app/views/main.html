@@ -29,11 +29,11 @@
 					#{if requetes != null || choice!= null}
 						<div id = "rightchoose">
               #{secure.check 'isTechnicien'}
-							<form name="chooseView" action="@{Application.chooseView()}" method="GET">
-                <select name="view" onchange="document.chooseView.submit();">
-									<option value = "mes">Mes requêtes</option>
-									<option value = "assignees">Mes assignations</option>
-									<option value = "nonAssignees">Non assignées</option>
+              <form name="chooseView">
+                <select name="view" onchange="window.location = document.chooseView.view.value;">
+                  #{list items:urlmap.keySet(), as:'url'}
+                  <option value="${url}"#{if (request.path.equals(url))} selected#{/if}>${urlmap[url]}</option>
+                  #{/list}
 								</select>
 							</form>
               #{/secure.check}

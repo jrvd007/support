@@ -21,16 +21,19 @@ public class Application extends Controller {
     }
 
     private static void list(List requetes) {
-        render("Application/list.html", requetes);
+        System.out.println(request.path);
+        SortedMap<String, String> urlmap = new TreeMap();
+        urlmap.put(Router.reverse("Application.mes").url, "Mes requêtes");
+        urlmap.put(Router.reverse("Application.assignees").url,
+                   "Mes assignations");
+        urlmap.put(Router.reverse("Application.nonAssignees").url,
+                   "Non assignées");
+
+        render("Application/list.html", requetes, urlmap);
     }
 
     public static void mes() {
         list(Requete.parCreateur(user));
-    }
-
-    public static void chooseView(String view) {
-        System.out.println(view);
-        redirect(Router.reverse("Application." + view).url);
     }
 
     @Check("isTechnicien")

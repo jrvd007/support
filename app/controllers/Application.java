@@ -21,6 +21,7 @@ public class Application extends Controller {
     }
 
     private static void list(List requetes) {
+	renderArgs.put("categories", Requete.Categorie.values());
         System.out.println(request.path);
         SortedMap<String, String> urlmap = new TreeMap();
         urlmap.put(Router.reverse("Application.mes").url, "Mes requêtes");
@@ -45,6 +46,19 @@ public class Application extends Controller {
     public static void nonAssignees() {
         list(Requete.nonAssignees());
     }
+
+	public static void finalisereq()
+	{
+		mes();	
+	}
+	public static void abandonnereq()
+	{
+		mes();
+	}
+	public static void assignereq()
+	{
+		mes();
+	}
 
 	public static void nouvelleRequete(){
         renderArgs.put("categories", Requete.Categorie.values());
@@ -78,11 +92,17 @@ public class Application extends Controller {
 		}
 	}
 
-    public static void commentaire(@Required long requete_id, @Required String text) {
+    public static void commentaire(@Required long requete_id, @Required String commentaireText) {
         Requete req = Requete.findById(requete_id);
-        req.addCommentaire(text);
+        req.addCommentaire(commentaireText);
         mes();
     }
+	public static void newcategorie(@Required long requete_id, @Required String nouvcategorie) {
+		Requete req = Requete.findById(requete_id);
+		req.categorie = Enum.valueOf(Requete.Categorie.class, nouvcategorie);
+		req.save();
+		mes();
+	} 
 
     public static void upload(@Required long requete_id, @Required java.io.File newFile) {
         Requete req = Requete.findById(requete_id);

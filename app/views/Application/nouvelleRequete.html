@@ -5,9 +5,9 @@
 <div id = "creation">
 <form action="@{Application.creerRequete()}" method="POST">
 	<select name="categorie" class = "seperate">
-    <option selected value="">Choisissez une catégorie</option>
+    <option selected = "selected" value="">Choisissez une catégorie</option>
     #{list items:categories, as: 'categorie'}
-    <option value="${categorie}" #{if categorie.toString().equals(flash.categorie)}selected#{/if}>${categorie}</option>
+    <option value="${categorie}" #{if categorie.toString().equals(flash.categorie)}selected = "selected"#{/if}>${categorie}</option>
     #{/list}
   </select>
   <span class="error">#{error 'categorie' /}</span><br />

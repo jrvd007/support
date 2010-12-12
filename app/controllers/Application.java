@@ -4,7 +4,11 @@ import play.*;
 import play.mvc.*;
 import play.data.validation.*;
 
+import java.io.IOException;
 import java.util.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import models.*;
 
@@ -49,6 +53,11 @@ public class Application extends Controller {
 	public static void nouvelleRequete(){
         renderArgs.put("categories", Requete.Categorie.values());
 		render();
+	}
+	
+	@Check("isTechnicien")
+	public static void genererRapport(){
+		
 	}
 
 	public static void creerRequete(@Required String categorie, @Required String sujet, @Required String description){

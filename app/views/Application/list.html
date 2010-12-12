@@ -39,27 +39,31 @@
 			</a>
  	</li>
  	<div class = "floatleft">
+		#{secure.check 'isTechnicien'}
 		<div class = "finass">
-			#{if true}
-				<a href="@{Application.finalisereq()}">Finaliser requête</a>
-				<a href="@{Application.abandonnereq()}">Abandonner requête</a>
+			#{if requete.responsable == null}
+				<a href="@{Application.assignerRequete(requete.id)}">M'assigner cette requête</a>
 			#{/if}
-			#{else}
-				<a href="@{Application.assignereq()}">M'assigner cette requête</a>
-			#{/else}
+			#{elseif !requete.isFinalisee()}
+				<a href="@{Application.finaliserRequete(requete.id)}">Finaliser requête</a>
+				<a href="@{Application.abandonnerRequete(requete.id)}">Abandonner requête</a>
+			#{/elseif}
 		</div>
+		#{/secure.check}
 		<p class = "para"><span class = "expl">Sujet:</span><br /><span class ="desc">${requete.sujet}</span></p>
 		<p class = "para"><span class = "expl">Catégorie:</span><br /><span class ="desc">${requete.categorie}</span></p>
 		#{secure.check 'isTechnicien'}
-		<form id = "nouvelleCat" action="@{Application.newcategorie()}" name = "nouvelleCat" method = "POST">
+		#{if !requete.isFinalisee()}
+		<form id = "nouvelleCat" action="@{Application.changerCategorie()}" name = "nouvelleCat" method = "POST">
 		<input type = "hidden" name = "requete_id" value = "${requete.id}" />
 		<select name="nouvcategorie">
 		    	#{list items:categories, as: 'categorie'}
 		      	<option value="${categorie}">${categorie}</option>
 		    	#{/list}
  		</select>
-		<input type = "submit" value = "Changer categorie" />
+		<input type = "submit" value = "Changer la catégorie" />
 		</form>
+		#{/if}
 		#{/secure.check}
 
 		<p class = "para"><span class = "expl">Description:</span><br /><span class ="desc">${requete.description}</span></p>
@@ -77,11 +81,13 @@
 		#{else}
 			<p class = "pdesc">Aucun commentaire.</p>
 		#{/else}	
+		#{if !requete.isFinalisee()}
     		<form id="nouveauCommentaire" action="@{Application.commentaire()}" name = "nouveauCommentaire" method="POST">
         	<input type="hidden" name="requete_id" value="${requete.id}" />
         	<textarea name="commentaireText" id="commentaireText" rows=3 cols=40 >Nouveau commentaire.</textarea><br />
       		<input type="submit" value="Ajouter commentaire" />
       		</form>
+		#{/if}
 	</div>
 
     

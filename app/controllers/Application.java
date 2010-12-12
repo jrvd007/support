@@ -29,11 +29,8 @@ public class Application extends Controller {
         System.out.println(request.path);
         SortedMap<String, String> urlmap = new TreeMap();
         urlmap.put(Router.reverse("Application.mes").url, "Mes requêtes");
-        urlmap.put(Router.reverse("Application.assignees").url,
-                   "Mes assignations");
-        urlmap.put(Router.reverse("Application.nonAssignees").url,
-                   "Non assignées");
-
+        urlmap.put(Router.reverse("Application.assignees").url, "Mes assignations");
+        urlmap.put(Router.reverse("Application.nonAssignees").url, "Non assignées");
         render("Application/list.html", requetes, urlmap);
     }
 
@@ -51,16 +48,24 @@ public class Application extends Controller {
         list(Requete.nonAssignees());
     }
 
-	public static void finalisereq()
-	{
-		mes();	
-	}
-	public static void abandonnereq()
-	{
+    @Check("isTechnicien")
+	public static void finaliserRequete(@Required long requete_id){
+    	Requete requete = Requete.findById(requete_id);
+		requete.finaliser();
 		mes();
 	}
-	public static void assignereq()
-	{
+	
+    @Check("isTechnicien")
+	public static void abandonnerRequete(@Required long requete_id){
+    	Requete requete = Requete.findById(requete_id);
+		requete.abandonner();
+		mes();
+	}
+    
+    @Check("isTechnicien")
+	public static void assignerRequete(@Required long requete_id){
+    	Requete requete = Requete.findById(requete_id);
+		requete.assignerTech((Technicien) user);
 		mes();
 	}
 
@@ -109,7 +114,7 @@ public class Application extends Controller {
     }
     
     @Check("isTechnicien")
-	public static void newcategorie(@Required long requete_id, @Required String nouvcategorie) {
+	public static void changerCategorie(@Required long requete_id, @Required String nouvcategorie) {
 		Requete req = Requete.findById(requete_id);
 		req.categorie = Enum.valueOf(Requete.Categorie.class, nouvcategorie);
 		req.save();

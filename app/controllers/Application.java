@@ -107,6 +107,8 @@ public class Application extends Controller {
         req.addCommentaire(commentaireText);
         mes();
     }
+    
+    @Check("isTechnicien")
 	public static void newcategorie(@Required long requete_id, @Required String nouvcategorie) {
 		Requete req = Requete.findById(requete_id);
 		req.categorie = Enum.valueOf(Requete.Categorie.class, nouvcategorie);

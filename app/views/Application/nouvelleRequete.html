@@ -7,7 +7,7 @@
 	<select name="categorie" class = "seperate">
     <option selected value="">Choisissez une catégorie</option>
     #{list items:categories, as: 'categorie'}
-      <option value="${categorie}">${categorie}</option>
+    <option value="${categorie}" #{if categorie.toString().equals(flash.categorie)}selected#{/if}>${categorie}</option>
     #{/list}
   </select>
   <span class="error">#{error 'categorie' /}</span><br />

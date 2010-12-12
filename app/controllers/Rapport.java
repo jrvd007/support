@@ -17,7 +17,7 @@ public class Rapport{
 	private Rapport(){
 		assignees = Requete.count("byStatut", Requete.Statut.Assignée);
 		nonAssignees = Requete.count("byResponsableIsNull");
-		completees = Requete.count("byStatut", Requete.Statut.Completée);
+		completees = Requete.count("byStatut", Requete.Statut.Complétée);
 		abandonnees = Requete.count("byStatut", Requete.Statut.Abandonnée);
 		
 		techs = new LinkedList<TechStats>();
@@ -36,12 +36,12 @@ public class Rapport{
 		public TechStats(Technicien tech){
 			nom = tech.prenom + " "+ tech.nom + "  ("+tech.username+")";
 			entraitement = Requete.count("byResponsableAndStatut", tech, Requete.Statut.Assignée);
-			completees = Requete.count("byResponsableAndStatut", tech, Requete.Statut.Completée);
+			completees = Requete.count("byResponsableAndStatut", tech, Requete.Statut.Complétée);
 			abandonnees = Requete.count("byResponsableAndStatut", tech, Requete.Statut.Abandonnée);
 			
 			categories = new LinkedList<CatStats>();
 			for(Requete.Categorie cat : Requete.Categorie.values()){
-				categories.add(new CatStats(cat, Requete.count("byResponsableAndStatutAndCategorie", tech, Requete.Statut.Completée, cat)));
+				categories.add(new CatStats(cat, Requete.count("byResponsableAndStatutAndCategorie", tech, Requete.Statut.Complétée, cat)));
 			}
 		}
 		public String nom;

@@ -12,7 +12,7 @@ public class Requete extends Model {
 	}
 
     public static enum Statut {
-        Assignée, Completée, Abandonnée
+        Assignée, Complétée, Abandonnée
     }
 
     @ManyToOne
@@ -26,7 +26,7 @@ public class Requete extends Model {
     @Lob
     public String description;
 
-    public Date creation;
+    public Date creation, fermeture;
 
     public Categorie categorie;
 
@@ -57,6 +57,28 @@ public class Requete extends Model {
 
     public static List<Requete> nonAssignees() {
         return find("byResponsableIsNull").fetch();
+    }
+    
+    public void assignerTech(Technicien tech){
+    	statut = Statut.Assignée;
+    	responsable = tech;
+    	save();
+    }
+    
+    public void finaliser(){
+    	fermeture = new Date();
+    	statut = Statut.Complétée;
+    	save();
+    }
+    
+    public void abandonner(){
+    	fermeture = new Date();
+    	statut = Statut.Abandonnée;
+    	save();
+    }
+    
+    public boolean isFinalisee(){
+    	return (statut == Statut.Complétée || statut == Statut.Abandonnée);
     }
 
     public Commentaire addCommentaire(String text) {

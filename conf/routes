@@ -9,14 +9,16 @@ GET     /                                       Application.mes
 GET     /requetes/choose_view                   Application.chooseView
 GET	/rapport				Application.rapport
 
-GET	/requetes/finalisereq			Application.finalisereq
-GET 	/requetes/abandonnereq			Application.abandonnereq
-GET	/requetes/assignereq			Application.assignereq
+
+GET	/requetes/finalisereq			Application.finaliserRequete
+GET 	/requetes/abandonnereq			Application.abandonnerRequete
+GET	/requetes/assignereq			Application.assignerRequete
 
 POST    /requetes/nouvelle                      Application.creerRequete
 GET     /requetes/nouvelle                      Application.nouvelleRequete
 
-POST 	/requetes/newcategorie			Application.newcategorie
+POST 	/requetes/changerCategorie		Application.changerCategorie
+
 POST    /requetes/commentaire                   Application.commentaire
 POST    /requetes/upload                        Application.upload
 

@@ -39,6 +39,13 @@
 			</a>
  	</li>
   <div class = "floatleft"><p>${requete.description}</p></div>
+    #{if requete.createur == user}
+    <form id="nouveauCommentaire" action="@{Application.commentaire()}" method="POST">
+        <input type="hidden" name="requete_id" value="${requete.id}" />
+        <textarea name="text" id="commentaireText" rows=3 cols=40>Nouveau commentaire.</textarea>
+      <input type="submit" value="Ajouter commentaire" />
+      </form>
+    #{/if}
 
     #{if requete.commentaires.size() >= 1}
     <ul class="commentaires">

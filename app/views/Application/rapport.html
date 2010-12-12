@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+#{set title:'Rapport' /}
+#{set section:"Rapport détaillé" /}
+
+<div id = "rapport">
+<form action="@{Application.rapport()}" method="GET">
+
+	<span class="titre">Rapport Général :</span>
+	<ul>
+	<li>Non assignées : ${rapport.nonAssignees}</li>
+	<li>En traitement : ${rapport.assignees}</li>
+	<li>Complétées : ${rapport.completees}</li>
+	<li>Abandonnées : ${rapport.abandonnees}</li>
+	</ul>
+
+	<span class="titre">Rapport détaillé par technicien :</span>
+	<ul>	
+	#{list items:rapport.techs, as: 'tech'}
+		<li class="tech">${tech.nom}</li>
+		<br />
+		<li>Statut des requêtes</li>
+		<ul>
+			<li>En traitement : ${tech.entraitement}</li>
+			<li>Complétées : ${tech.completees}</li>
+			<li>Abandonnées : ${tech.abandonnees}</li>
+		</ul>
+		<br />
+		<li>Requêtes traitées par catégorie</li>
+		<ul>
+			#{list items:tech.categories, as: 'categorie'}
+			<li>${categorie.nom} : ${categorie.count}</li>
+			#{/list}
+		</ul>
+		<br />
+	#{/list}
+	</ul>
+</form>
+</div>

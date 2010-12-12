@@ -7,7 +7,7 @@ GET     /requetes/assignees                     Application.assignees
 GET     /requetes/non_assignees                 Application.nonAssignees
 GET     /                                       Application.mes
 GET     /requetes/choose_view                   Application.chooseView
-GET		/rapport								Application.genererRapport
+GET		/rapport								Application.rapport
 
 GET		/requetes/finalisereq					Application.finalisereq
 GET 	/requetes/abandonnereq					Application.abandonnereq

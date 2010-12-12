@@ -70,8 +70,9 @@ public class Application extends Controller {
 	}
 	
 	@Check("isTechnicien")
-	public static void genererRapport(){
-		
+	public static void rapport(){
+		renderArgs.put("rapport", Rapport.genere());
+		render();	
 	}
 
 	public static void creerRequete(@Required String categorie, @Required String sujet, @Required String description){

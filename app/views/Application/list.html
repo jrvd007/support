@@ -9,7 +9,7 @@
 	</p>
 #{/if}
 
-#{if requetes!=null && requetes.size() >= 1}
+#{else}
 	<div id = "accordion">
 	<ul class = "requetes">
 	<div class = "seperation">
@@ -43,7 +43,7 @@
     #{/list}
 	</ul>
 	</div>
-#{/if}
+#{/else}
 
 <script>
 	$(function() {

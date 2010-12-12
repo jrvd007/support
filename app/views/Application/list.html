@@ -38,26 +38,50 @@
 				</span>
 			</a>
  	</li>
-  <div class = "floatleft"><p>${requete.description}</p></div>
-    #{if requete.createur == user}
-    <form id="nouveauCommentaire" action="@{Application.commentaire()}" method="POST">
-        <input type="hidden" name="requete_id" value="${requete.id}" />
-        <textarea name="text" id="commentaireText" rows=3 cols=40>Nouveau commentaire.</textarea>
-      <input type="submit" value="Ajouter commentaire" />
-      </form>
-    #{/if}
+ 	<div class = "floatleft">
+		<div class = "finass">
+			#{if true}
+				<a href="@{Application.finalisereq()}">Finaliser requête</a>
+				<a href="@{Application.abandonnereq()}">Abandonner requête</a>
+			#{/if}
+			#{else}
+				<a href="@{Application.assignereq()}">M'assigner cette requête</a>
+			#{/else}
+		</div>
+		<p class = "para"><span class = "expl">Sujet:</span><br /><span class ="desc">${requete.sujet}</span></p>
+		<p class = "para"><span class = "expl">Catégorie:</span><br /><span class ="desc">${requete.categorie}</span></p>
+		<form id = "nouvelleCat" action="@{Application.newcategorie()}" name = "nouvelleCat" method = "POST">
+		<input type = "hidden" name = "requete_id" value = "${requete.id}" />
+		<select name="nouvcategorie">
+		    	#{list items:categories, as: 'categorie'}
+		      	<option value="${categorie}">${categorie}</option>
+		    	#{/list}
+ 		</select>
+		<input type = "submit" value = "Changer categorie" />
+		</form>
+		<p class = "para"><span class = "expl">Description:</span><br /><span class ="desc">${requete.description}</span></p>
+		<ul class = "commentaires">
+				<span class = "expl">Commentaires:</span><br />		
+		#{if requete.commentaires.size() >= 1}
+				#{list items:requete.commentaires, as: 'commentaire'}
+				<li class="commentaire">
+				<span class="datecomment">${commentaire.date.format('dd MMMM yyyy', 'fr')}:</span>
+        			<span class="commentaire_text">${commentaire.text}</span>
+      				</li>
+      				#{/list}
+    			</ul>
+    		#{/if}
+		#{else}
+			<p class = "pdesc">Aucun commentaire.</p>
+		#{/else}	
+    		<form id="nouveauCommentaire" action="@{Application.commentaire()}" name = "nouveauCommentaire" method="POST">
+        	<input type="hidden" name="requete_id" value="${requete.id}" />
+        	<textarea name="commentaireText" id="commentaireText" rows=3 cols=40 >Nouveau commentaire.</textarea><br />
+      		<input type="submit" value="Ajouter commentaire" />
+      		</form>
+	</div>
 
-    #{if requete.commentaires.size() >= 1}
-    <ul class="commentaires">
-      #{list items:requete.commentaires, as: 'commentaire'}
-      <li class="commentaire" id="commentaire_${commentaire.id}">
-        <span class="date">${commentaire.date.format('dd MMMM yyyy', 'fr')}</span>
-        :
-        <span class="commentaire_text">${commentaire.text}</span>
-      </li>
-      #{/list}
-    </ul>
-    #{/if}
+    
 	</div>
     #{/list}
 	</ul>
@@ -69,3 +93,11 @@
 		$( "#accordion" ).accordion({ header: 'li.header', collapsible: true });
 	});
 </script>
+
+<script>
+	$(function() {
+		$( "a", ".finass" ).button();
+		/*$( "a", ".finass" ).click(function() { return false; });*/
+	});
+</script>
+

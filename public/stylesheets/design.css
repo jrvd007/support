@@ -279,7 +279,7 @@ textarea
 }
 
 
-#accordion ul
+#accordion ul.requetes
 {
 	margin-left: 10px;
 	padding-left: 0px;
@@ -299,7 +299,93 @@ textarea
 	margin-bottom: 5px;
 }
 
-#accordion li
+#accordion li.header
 {
 	float: left;
 }
+
+.floatleft p.para
+{
+	float: left;
+	margin-left: 0px;
+	width: 100%;
+	margin-top: 0px;
+}
+
+.floatleft ul
+{
+	float: left;
+	margin-left: 0px;
+	padding-left: 0px;
+	width: 100%;
+}
+
+.expl
+{
+	float: left;
+	text-decoration: underline;
+	font-weight: bold;
+	font-size: 1.1em;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.desc
+{
+	float: left;
+	margin-left: 10px;
+}
+
+.pdesc
+{
+	float: left;
+	margin-left: 10px;
+	width: 100%;
+	margin-top: 0px;
+}
+
+.commentaire
+{
+	float: left;
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+.datecomment
+{
+	float: left;
+	width: 150px;
+}
+
+.commentaire_text
+{
+	float: left;
+	width: 696px;
+}
+
+#nouveauCommentaire, #nouvelleCat
+{
+	float:left;
+	width: 100%;
+	margin-left: 0px;
+}
+
+#nouvelleCat select
+{
+	margin-bottom: 10px;
+}
+
+#nouveauCommentaire textarea
+{
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.finass
+{
+	float:left;
+	width: 100%;
+	margin-bottom: 10px;
+	text-align: center;
+}
+	

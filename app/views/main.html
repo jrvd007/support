@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE ht:q!ml>
 
 <html>
     <head>
@@ -19,6 +19,9 @@
 		<ul id = "menu">
 			<li><a href ="@{Application.mes()}"><span>Requêtes</span></a></li>
 			<li><a href ="@{Application.nouvelleRequete()}"><span>Créer requête</span></a></li>
+			#{secure.check 'isTechnicien'}
+				<li><a href ="@{Application.rapport()}"><span>Générer Rapport</span></a></li>
+			#{/secure.check}
       <li><a href ="@{Secure.logout()}"><span>Se déconnecter</span></a></li>
 		</ul>
 		</div>

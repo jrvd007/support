@@ -54,14 +54,15 @@ Technicien(tech):
 
 Requete(aidezmoi):
     createur: grinshpun
-    responsable: vandoorn
+    responsable: tech
     sujet: "besoin d'aide"
     description: Mon ordi ne fonctionne plus.
     creation: 2010-01-01
+    statut: 1
 
 Requete(reparezmoi):
     createur: vandoorn
-    responsable: grinshpun
+    responsable: leon
     sujet: Réparez-moi.
     description: Je suis en panne. Réparez-moi svp.
     creation: 2010-08-05

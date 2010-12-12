@@ -7,14 +7,16 @@ GET     /requetes/assignees                     Application.assignees
 GET     /requetes/non_assignees                 Application.nonAssignees
 GET     /                                       Application.mes
 GET     /requetes/choose_view                   Application.chooseView
-GET	/requetes/finalisereq			Application.finalisereq
-GET 	/requetes/abandonnereq			Application.abandonnereq
-GET	/requetes/assignereq			Application.assignereq
+GET		/rapport								Application.rapport
+
+GET		/requetes/finalisereq					Application.finalisereq
+GET 	/requetes/abandonnereq					Application.abandonnereq
+GET		/requetes/assignereq					Application.assignereq
 
 POST    /requetes/nouvelle                      Application.creerRequete
 GET     /requetes/nouvelle                      Application.nouvelleRequete
 
-POST 	/requetes/newcategorie			Application.newcategorie
+POST 	/requetes/newcategorie					Application.newcategorie
 POST    /requetes/commentaire                   Application.commentaire
 POST    /requetes/upload                        Application.upload
 

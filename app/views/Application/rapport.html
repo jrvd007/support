@@ -3,36 +3,32 @@
 #{set section:"Rapport détaillé" /}
 
 <div id = "rapport">
-<form action="@{Application.rapport()}" method="GET">
-
 	<span class="titre">Rapport Général :</span>
-	<ul>
-	<li>Non assignées : ${rapport.nonAssignees}</li>
-	<li>En traitement : ${rapport.assignees}</li>
-	<li>Complétées : ${rapport.completees}</li>
-	<li>Abandonnées : ${rapport.abandonnees}</li>
+	<ul id = "rapportgen">
+	<li><span class = "explrap">Non assignées</span><span class = "detrap">: ${rapport.nonAssignees}</span></li>
+	<li><span class = "explrap">En traitement</span><span class = "detrap">: ${rapport.assignees}</span></li>
+	<li><span class = "explrap green">Complétées</span><span class = "detrap">: ${rapport.completees}</span></li>
+	<li><span class = "explrap red">Abandonnées</span><span class = "detrap">: ${rapport.abandonnees}</span></li>
 	</ul>
-
 	<span class="titre">Rapport détaillé par technicien :</span>
-	<ul>	
+	<ul id = "rapportdet">	
 	#{list items:rapport.techs, as: 'tech'}
 		<li class="tech">${tech.nom}</li>
-		<br />
-		<li>Statut des requêtes</li>
-		<ul>
-			<li>En traitement : ${tech.entraitement}</li>
-			<li>Complétées : ${tech.completees}</li>
-			<li>Abandonnées : ${tech.abandonnees}</li>
+		<ul class = "regrouprap">
+			<li class = "rapelement">Statut des requêtes</li>
+			<ul class = "rapdonnees">
+				<li><span class = "explrap">En traitement</span><span class = "detrap">: ${tech.entraitement}</span></li>
+				<li><span class = "explrap green">Complétées</span><span class = "detrap">: ${tech.completees}</span></li>
+				<li><span class = "explrap red">Abandonnées</span><span class = "detrap">: ${tech.abandonnees}</span></li>
+			</ul>
+			<li class = "rapelement">Requêtes traitées par catégorie</li>
+			<ul class = "rapdonnees">
+				#{list items:tech.categories, as: 'categorie'}
+				<li><span class = "explrap">${categorie.nom}</span><span class = "detrap">: ${categorie.count}</span></li>
+				#{/list}
+			</ul>
 		</ul>
-		<br />
-		<li>Requêtes traitées par catégorie</li>
-		<ul>
-			#{list items:tech.categories, as: 'categorie'}
-			<li>${categorie.nom} : ${categorie.count}</li>
-			#{/list}
-		</ul>
-		<br />
 	#{/list}
 	</ul>
-</form>
 </div>
+

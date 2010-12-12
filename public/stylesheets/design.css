@@ -125,7 +125,7 @@ img
 	margin: 10px 20px 0px 0px;
 }
 
-#accordion,.aucune,#creation
+#accordion,.aucune,#creation,#rapport
 {
 	float:left;
 	width:938px;
@@ -360,7 +360,7 @@ textarea
 .commentaire_text
 {
 	float: left;
-	width: 696px;
+	width: 680px;
 }
 
 #nouveauCommentaire, #nouvelleCat
@@ -388,4 +388,94 @@ textarea
 	margin-bottom: 10px;
 	text-align: center;
 }
-	
+
+#rapport .titre
+{
+	float:left;
+	width: 100%;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 1.1em;
+	margin-left: 10px;
+}
+
+#rapport #rapportgen li
+{
+	float:left;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.explrap
+{
+	float:left;
+	width: 15%;
+}
+
+.detrap
+{
+	float: left;
+	width: 85%;
+}
+
+#rapportgen
+{
+	float: left;
+	width: 100%;
+}	
+
+#rapportdet
+{
+	float: left;
+	width: 100%;
+}
+
+#rapportdet .tech
+{
+	float: left;
+	width: 100%;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.rapelement
+{
+	float: left;
+	width: 100%;
+	text-decoration: underline;
+	margin-bottom: 10px;
+}
+
+.rapdonnees
+{
+	float: left; 
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.rapdonnees li
+{
+	float: left;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.regrouprap
+{
+	float: left;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+
+.red
+{
+	color: red;
+}
+
+.green
+{
+	color: green;
+}
+
+

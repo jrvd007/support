@@ -93,7 +93,7 @@
 		#{if !requete.isFinalisee()}
     		<form id="nouveauCommentaire" action="@{Application.commentaire()}" name = "nouveauCommentaire" method="POST">
         	<input type="hidden" name="requete_id" value="${requete.id}" />
-        	<textarea name="commentaireText" id="commentaireText" rows=3 cols=40 >Nouveau commentaire.</textarea><br />
+        	<textarea name="commentaireText" id="commentaireText" rows=3 cols=40 onclick="select_all()">Nouveau commentaire.</textarea><br />
       		<input type="submit" value="Ajouter commentaire" />
       		</form>
 		#{/if}
@@ -119,3 +119,10 @@
 	});
 </script>
 
+<script>
+	function select_all()
+ 	 {
+	 document.getElementById('commentaireText').focus();
+	 document.getElementById('commentaireText').select();
+	 }
+</script>

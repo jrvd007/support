@@ -125,13 +125,23 @@ img
 	margin: 10px 20px 0px 0px;
 }
 
-#accordion,.aucune,#creation,#rapport
+#accordion,.aucune,#creation
 {
 	float:left;
 	width:938px;
 	border-left:1px solid #eee;
 	border-right:1px solid #eee;
 	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+#rapport
+{
+	float:left;
+	width:868px;
+	border-left:1px solid #eee;
+	border-right:1px solid #eee;
+	padding: 50px 0px 0px 70px;
 	margin: 0px 0px 0px 0px;
 }
 

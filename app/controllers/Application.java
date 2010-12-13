@@ -67,7 +67,7 @@ public class Application extends Controller {
 	public static void assignerRequete(@Required long requete_id){
     	Requete requete = Requete.findById(requete_id);
 		requete.assignerTech((Technicien) user);
-		mes();
+		assignees();
 	}
 
 	public static void nouvelleRequete(){

@@ -79,6 +79,9 @@
             #{/list}
           </ul>
           #{/if}
+          #{else}
+            <p class = "pdesc">Aucun fichier.</p>
+          #{/else}
           #{if requete.createur == user}
           <form action="@{Application.upload()}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="requete_id" value="${requete.id}" />

@@ -67,9 +67,19 @@
 		#{/secure.check}
 
 		<p class = "para"><span class = "expl">Description:</span><br /><span class ="desc">${requete.description}</span></p>
-		<ul class = "commentaires">
         <span class = "expl">Fichiers:</span><br />
-         #{if requete.createur == user}
+          #{if requete.fichiers.size() >= 1}
+            <ul id = "fichiers">
+            #{list items:requete.fichiers, as: 'fichier'}
+            <li class="fichier">
+            <a href="/uploads/${fichier.id}/${fichier.file.getName()}">
+              ${fichier.file.getName()}
+            </a>
+            </li>
+            #{/list}
+          </ul>
+          #{/if}
+          #{if requete.createur == user}
           <form action="@{Application.upload()}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="requete_id" value="${requete.id}" />
             <input type="file" id="newFile" name="newFile" />
@@ -78,10 +88,11 @@
           #{/if}
 
 				<span class = "expl">Commentaires:</span><br />
-		#{if requete.commentaires.size() >= 1}
-				#{list items:requete.commentaires, as: 'commentaire'}
-				<li class="commentaire">
-				<span class="datecomment">${commentaire.date.format('dd MMMM yyyy', 'fr')}:</span>
+        #{if requete.commentaires.size() >= 1}
+          <ul class = "commentaires">
+              #{list items:requete.commentaires, as: 'commentaire'}
+              <li class="commentaire">
+              <span class="datecomment">${commentaire.date.format('dd MMMM yyyy', 'fr')}:</span>
         			<span class="commentaire_text">${commentaire.text}</span>
       				</li>
       				#{/list}

@@ -3,6 +3,8 @@ package models;
 import javax.persistence.*;
 import java.io.*;
 
+import play.mvc.*;
+
 import play.db.jpa.*;
 
 @Entity

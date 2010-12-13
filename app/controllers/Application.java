@@ -136,6 +136,7 @@ public class Application extends Controller {
         // Move the temporary file to a permanent location
         File dest = new File(destdir.getPath() + "/" + newFile.getName());
         newFile.renameTo(dest);
+        System.out.println(dest);
 
         // Add the new file location to the request
         fichier.file = dest;

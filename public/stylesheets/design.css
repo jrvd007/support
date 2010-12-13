@@ -364,13 +364,17 @@ textarea
 .datecomment
 {
 	float: left;
-	width: 150px;
+	width: 100%;
+	font-weight:bold;
+	margin-bottom: 4px;
 }
 
 .commentaire_text
 {
 	float: left;
-	width: 680px;
+	width: 100%;
+	margin-left:15px;
+	margin-bottom:8px;
 }
 
 #nouveauCommentaire, #nouvelleCat
@@ -488,4 +492,8 @@ textarea
 	color: green;
 }
 
-
+.dateferme
+{
+	float: left;
+	font-weight : bold;
+}

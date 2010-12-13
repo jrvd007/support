@@ -81,7 +81,7 @@
 		#{if requete.commentaires.size() >= 1}
 				#{list items:requete.commentaires, as: 'commentaire'}
 				<li class="commentaire">
-				<span class="datecomment">${commentaire.date.format('dd MMMM yyyy', 'fr')}:</span>
+				<span class="datecomment">${commentaire.date.format('dd/MM/yyyy H:mm ', 'fr')+" ("+user.username+")"}:</span>
         			<span class="commentaire_text">${commentaire.text}</span>
       				</li>
       				#{/list}
@@ -96,6 +96,11 @@
         	<textarea name="commentaireText" id="commentaireText" rows=3 cols=40 onclick="select_all()">Nouveau commentaire.</textarea><br />
       		<input type="submit" value="Ajouter commentaire" />
       		</form>
+		#{/if}
+		#{if requete.isFinalisee()}
+			<p class = "dateferme">
+			Date de fermeture : ${requete.fermeture.format('dd MMMM yyyy H:mm', 'fr')}
+			</p>
 		#{/if}
 	</div>
 

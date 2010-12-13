@@ -68,7 +68,16 @@
 
 		<p class = "para"><span class = "expl">Description:</span><br /><span class ="desc">${requete.description}</span></p>
 		<ul class = "commentaires">
-				<span class = "expl">Commentaires:</span><br />		
+        <span class = "expl">Fichiers:</span><br />
+         #{if requete.createur == user}
+          <form action="@{Application.upload()}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="requete_id" value="${requete.id}" />
+            <input type="file" id="newFile" name="newFile" />
+            <input type="submit" value="Ajouter un fichier" />
+          </form>
+          #{/if}
+
+				<span class = "expl">Commentaires:</span><br />
 		#{if requete.commentaires.size() >= 1}
 				#{list items:requete.commentaires, as: 'commentaire'}
 				<li class="commentaire">
@@ -80,7 +89,7 @@
     		#{/if}
 		#{else}
 			<p class = "pdesc">Aucun commentaire.</p>
-		#{/else}	
+		#{/else}
 		#{if !requete.isFinalisee()}
     		<form id="nouveauCommentaire" action="@{Application.commentaire()}" name = "nouveauCommentaire" method="POST">
         	<input type="hidden" name="requete_id" value="${requete.id}" />
@@ -90,7 +99,7 @@
 		#{/if}
 	</div>
 
-    
+
 	</div>
     #{/list}
 	</ul>

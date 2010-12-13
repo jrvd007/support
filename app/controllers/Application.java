@@ -5,6 +5,7 @@ import play.mvc.*;
 import play.data.validation.*;
 
 import java.io.IOException;
+import java.io.File;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,14 +55,14 @@ public class Application extends Controller {
 		requete.finaliser();
 		mes();
 	}
-	
+
     @Check("isTechnicien")
 	public static void abandonnerRequete(@Required long requete_id){
     	Requete requete = Requete.findById(requete_id);
 		requete.abandonner();
 		mes();
 	}
-    
+
     @Check("isTechnicien")
 	public static void assignerRequete(@Required long requete_id){
     	Requete requete = Requete.findById(requete_id);
@@ -73,11 +74,11 @@ public class Application extends Controller {
         renderArgs.put("categories", Requete.Categorie.values());
 		render();
 	}
-	
+
 	@Check("isTechnicien")
 	public static void rapport(){
 		renderArgs.put("rapport", Rapport.genere());
-		render();	
+		render();
 	}
 
 	public static void creerRequete(@Required String categorie, @Required String sujet, @Required String description){
@@ -112,30 +113,33 @@ public class Application extends Controller {
         req.addCommentaire(commentaireText);
         mes();
     }
-    
+
     @Check("isTechnicien")
 	public static void changerCategorie(@Required long requete_id, @Required String nouvcategorie) {
 		Requete req = Requete.findById(requete_id);
 		req.categorie = Enum.valueOf(Requete.Categorie.class, nouvcategorie);
 		req.save();
 		mes();
-	} 
+	}
 
-    public static void upload(@Required long requete_id, @Required java.io.File newFile) {
+    public static void upload(@Required long requete_id, @Required File newFile) {
         Requete req = Requete.findById(requete_id);
         Fichier fichier = new Fichier();
         fichier.save(); // HACK - generate an id. See note in models/Fichier.java
-        System.out.println(fichier.id);
-        System.out.println(newFile);
 
-        /*
-        //String location
-        newFile.renameTo(publicplace);
-        fichier.file(newFile);
-        System.out.println(newFile);
-        fichier.save();
-        //req.addFile(newFile);
-        */
+        // Create a separate directory for this upload
+        // Allows multiple uploads with same filename
+        File destdir = new File(Play.applicationPath + "/uploads/" +
+                                fichier.id);
+        destdir.mkdir();
+
+        // Move the temporary file to a permanent location
+        File dest = new File(destdir.getPath() + "/" + newFile.getName());
+        newFile.renameTo(dest);
+
+        // Add the new file location to the request
+        fichier.file = dest;
+        req.addFile(fichier);
 
         mes();
     }

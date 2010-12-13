@@ -58,25 +58,25 @@ public class Requete extends Model {
     public static List<Requete> nonAssignees() {
         return find("byResponsableIsNull").fetch();
     }
-    
+
     public void assignerTech(Technicien tech){
     	statut = Statut.Assignée;
     	responsable = tech;
     	save();
     }
-    
+
     public void finaliser(){
     	fermeture = new Date();
     	statut = Statut.Complétée;
     	save();
     }
-    
+
     public void abandonner(){
     	fermeture = new Date();
     	statut = Statut.Abandonnée;
     	save();
     }
-    
+
     public boolean isFinalisee(){
     	return (statut == Statut.Complétée || statut == Statut.Abandonnée);
     }
@@ -86,5 +86,11 @@ public class Requete extends Model {
         commentaires.add(commentaire);
         save();
         return commentaire;
+    }
+
+    public Fichier addFile(Fichier fichier) {
+        fichiers.add(fichier);
+        save();
+        return fichier;
     }
 }

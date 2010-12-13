@@ -110,7 +110,7 @@ public class Application extends Controller {
 
     public static void commentaire(@Required long requete_id, @Required String commentaireText) {
         Requete req = Requete.findById(requete_id);
-        req.addCommentaire(commentaireText);
+        req.addCommentaire(new Commentaire(commentaireText, user));
         mes();
     }
 

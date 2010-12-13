@@ -359,6 +359,7 @@ textarea
 	float: left;
 	margin-left: 10px;
 	margin-bottom: 5px;
+	width: 100%;
 }
 
 .datecomment

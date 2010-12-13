@@ -9,8 +9,10 @@ import play.db.jpa.*;
 public class Commentaire extends Model {
     public String text;
     public Date date;
-    public Commentaire(String text) {
+    public Usager usager;
+    public Commentaire(String text, Usager usager) {
         this.text = text;
+        this.usager = usager;
         this.date = new Date();
     }
 }

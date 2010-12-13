@@ -81,7 +81,7 @@
 		#{if requete.commentaires.size() >= 1}
 				#{list items:requete.commentaires, as: 'commentaire'}
 				<li class="commentaire">
-				<span class="datecomment">${commentaire.date.format('dd/MM/yyyy H:mm ', 'fr')+" ("+user.username+")"}:</span>
+				<span class="datecomment">${commentaire.date.format('dd/MM/yyyy H:mm ', 'fr')} (${commentaire.usager.username}) :</span>
         			<span class="commentaire_text">${commentaire.text}</span>
       				</li>
       				#{/list}

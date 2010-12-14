@@ -94,7 +94,7 @@
 						#{else}
 							<p class = "pdesc">Aucun commentaire.</p>
 						#{/else}
-    				</ul>
+    					</ul>
 		
 					<!-- Bloc pour l'ajout de nouveaux commentaires (possible si la requête n'est pas encore finalisée ou abandonnée)
 						 Seul le créateur et le responsable peuvent commenter une requête -->
@@ -107,10 +107,18 @@
 					#{/if}
 					
 					<!-- Bloc pour les fichiers -->
-					<span class = "expl">Fichiers:</span><br />
+					<ul class = "fichiers">
+						<span class = "expl">Fichiers:</span><br />
+					<ul>
+					#{if requete.fichiers.size() == 0}
+						<p class = "pdesc">Aucun fichier.</p>
+					#{/if}
+					#{else}
+						<!-- A ajouter : pouvoir downloader les fichiers -->
+					#{/else}
 					<!-- Upload de fichier pour les createurs des requetes -->
 					#{if !requete.isFinalisee() && requete.createur == user}
-						<form action="@{Application.upload()}" method="POST" enctype="multipart/form-data">
+						<form action="@{Application.upload()}" method="POST" enctype="multipart/form-data" id = "fichierup">
             				<input type="hidden" name="requete_id" value="${requete.id}" />
             				<input type="file" onChange="enable_button()" id="newFile" name="newFile" />
             				<input id="ajouterFichier" type="submit" value="Ajouter un fichier" disabled="disabled"/>
@@ -133,7 +141,7 @@
 <!-- Script pour l'accordion -->
 <script>
 	$(function() {
-		$( "#accordion" ).accordion({ header: 'li.header', collapsible: true });
+		$( "#accordion" ).accordion({ header: 'li.header', collapsible: true, autoHeight: false });
 	});
 </script>
 

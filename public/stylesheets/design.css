@@ -378,15 +378,11 @@ textarea
 	margin-bottom:8px;
 }
 
-#nouveauCommentaire, #nouvelleCat
+#nouvelleCat, #nouveauCommentaire 
 {
 	float:left;
 	width: 100%;
 	margin-left: 8px;
-}
-
-#nouvelleCat select
-{
 	margin-bottom: 10px;
 }
 
@@ -497,4 +493,10 @@ textarea
 {
 	float: left;
 	font-weight : bold;
+}
+
+.fichiers
+{
+	float: left;
+	width: 100%;
 }

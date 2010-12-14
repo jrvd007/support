@@ -55,21 +55,21 @@ public class Application extends Controller {
 	public static void finaliserRequete(@Required long requete_id){
     	Requete requete = Requete.findById(requete_id);
 		requete.finaliser();
-		mes();
+		assignees();
 	}
 
     @Check("isTechnicien")
 	public static void abandonnerRequete(@Required long requete_id){
     	Requete requete = Requete.findById(requete_id);
 		requete.abandonner();
-		mes();
+		assignees();
 	}
 
     @Check("isTechnicien")
 	public static void assignerRequete(@Required long requete_id){
     	Requete requete = Requete.findById(requete_id);
 		requete.assignerTech((Technicien) user);
-		mes();
+		nonAssignees();
 	}
 
 	public static void nouvelleRequete(){
@@ -131,6 +131,7 @@ public class Application extends Controller {
         // Move the temporary file to a permanent location
         File dest = new File(destdir.getPath() + "/" + newFile.getName());
         newFile.renameTo(dest);
+        System.out.println(dest);
 
         // Add the new file location to the request
         fichier.file = dest;

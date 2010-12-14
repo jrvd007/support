@@ -125,13 +125,23 @@ img
 	margin: 10px 20px 0px 0px;
 }
 
-#accordion,.aucune,#creation,#rapport
+#accordion,.aucune,#creation
 {
 	float:left;
 	width:938px;
 	border-left:1px solid #eee;
 	border-right:1px solid #eee;
 	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+#rapport
+{
+	float:left;
+	width:868px;
+	border-left:1px solid #eee;
+	border-right:1px solid #eee;
+	padding: 50px 0px 0px 70px;
 	margin: 0px 0px 0px 0px;
 }
 
@@ -349,29 +359,30 @@ textarea
 	float: left;
 	margin-left: 10px;
 	margin-bottom: 5px;
+	width: 100%;
 }
 
 .datecomment
 {
 	float: left;
-	width: 150px;
+	width: 100%;
+	font-weight:bold;
+	margin-bottom: 4px;
 }
 
 .commentaire_text
 {
 	float: left;
-	width: 680px;
+	width: 100%;
+	margin-left:15px;
+	margin-bottom:8px;
 }
 
-#nouveauCommentaire, #nouvelleCat
+#nouvelleCat, #nouveauCommentaire 
 {
 	float:left;
 	width: 100%;
-	margin-left: 0px;
-}
-
-#nouvelleCat select
-{
+	margin-left: 8px;
 	margin-bottom: 10px;
 }
 
@@ -478,4 +489,14 @@ textarea
 	color: green;
 }
 
+.dateferme
+{
+	float: left;
+	font-weight : bold;
+}
 
+.fichiers
+{
+	float: left;
+	width: 100%;
+}

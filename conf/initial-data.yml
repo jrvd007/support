@@ -52,33 +52,3 @@ Technicien(tech):
     username: bill
     password: gates
 
-Requete(aidezmoi):
-    createur: grinshpun
-    responsable: tech
-    sujet: "besoin d'aide"
-    description: Mon ordi ne fonctionne plus.
-    creation: 2010-01-01
-    statut: 1
-
-Requete(reparezmoi):
-    createur: vandoorn
-    responsable: leon
-    sujet: Réparez-moi.
-    description: Je suis en panne. Réparez-moi svp.
-    creation: 2010-08-05
-
-
-Commentaire(toujours):
-    date: 2010-08-08
-    text: Je suis toujours très perdue.
-
-Commentaire(serieux):
-    date: 2010-08-09
-    text: "C'est sérieux!"
-
-Requete(perdue):
-    createur: beauchemin
-    sujet: Je suis perdue.
-    description: "Je suis complètement perdue. C'est la fin du monde. Pouvez-vous m'aider?"
-    creation: 2010-08-06
-    commentaires: [toujours, serieux]

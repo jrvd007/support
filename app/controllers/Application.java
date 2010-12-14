@@ -1,17 +1,20 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-import play.data.validation.*;
-
-import java.io.IOException;
 import java.io.File;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import models.*;
+import models.Commentaire;
+import models.Fichier;
+import models.Requete;
+import models.Technicien;
+import models.Usager;
+import play.Play;
+import play.data.validation.Required;
+import play.mvc.Before;
+import play.mvc.Controller;
+import play.mvc.Router;
+import play.mvc.With;
 
 @With(Secure.class)
 public class Application extends Controller {
@@ -26,9 +29,8 @@ public class Application extends Controller {
     }
 
     private static void list(List requetes) {
-	renderArgs.put("categories", Requete.Categorie.values());
-        System.out.println(request.path);
-        SortedMap<String, String> urlmap = new TreeMap();
+    	renderArgs.put("categories", Requete.Categorie.values());
+        LinkedHashMap<String, String> urlmap = new LinkedHashMap();
         urlmap.put(Router.reverse("Application.mes").url, "Mes requêtes");
         urlmap.put(Router.reverse("Application.assignees").url, "Mes assignations");
         urlmap.put(Router.reverse("Application.nonAssignees").url, "Non assignées");
@@ -41,7 +43,7 @@ public class Application extends Controller {
 
     @Check("isTechnicien")
     public static void assignees() {
-        list(Requete.assignees(user));
+        list(Requete.parResponsable(user));
     }
 
     @Check("isTechnicien")
@@ -93,24 +95,9 @@ public class Application extends Controller {
 		mes();
 	}
 
-	public static void afficheRequete(Long id)
-	{
-		Requete requete = Requete.find("byId",id).first();
-		if(requete == null)
-		{
-			list(null);
-			return;
-		}
-		else
-		{
-		render(requete);
-		return;
-		}
-	}
-
     public static void commentaire(@Required long requete_id, @Required String commentaireText) {
         Requete req = Requete.findById(requete_id);
-        req.addCommentaire(commentaireText);
+        req.addCommentaire(new Commentaire(commentaireText, user));
         mes();
     }
 
@@ -122,15 +109,23 @@ public class Application extends Controller {
 		mes();
 	}
 
+    public static void download(@Required long requete_id, @Required long fichier_id){
+    	
+    }
+    
     public static void upload(@Required long requete_id, @Required File newFile) {
+    	if(validation.hasErrors()){
+    		params.flash();
+            validation.keep();
+            mes();
+    	}
         Requete req = Requete.findById(requete_id);
         Fichier fichier = new Fichier();
         fichier.save(); // HACK - generate an id. See note in models/Fichier.java
 
         // Create a separate directory for this upload
         // Allows multiple uploads with same filename
-        File destdir = new File(Play.applicationPath + "/uploads/" +
-                                fichier.id);
+        File destdir = new File(Play.applicationPath + "/uploads/" + fichier.id);
         destdir.mkdir();
 
         // Move the temporary file to a permanent location

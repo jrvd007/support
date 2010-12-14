@@ -14,8 +14,8 @@ GET	    /requetes/finalisereq			        Application.finaliserRequete
 GET 	/requetes/abandonnereq			        Application.abandonnerRequete
 GET	    /requetes/assignereq		            Application.assignerRequete
 
-POST    /nouvelle           		            Application.creerRequete
-GET     /nouvelle                   		    Application.nouvelleRequete
+POST    /nouvelle_requete     		            Application.creerRequete
+GET     /nouvelle_requete           		    Application.nouvelleRequete
 
 POST 	/requetes/changerCategorie	        	Application.changerCategorie
 

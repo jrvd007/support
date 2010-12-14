@@ -66,12 +66,12 @@ public class Rapport{
 		
 		// Classe contenant des stats sur les requêtes traitées par catégories
 		public class CatStats{
-			// Constructeur
+			// Constructeur.
 			public CatStats(Requete.Categorie categorie, long count){
 				this.nom = categorie.toString();
 				this.count = count;
 			}
-			// Stats sur la catégorie
+			// Stats sur la catégorie.
 			public String nom;
 			public long count;
 		}

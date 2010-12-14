@@ -7,7 +7,7 @@ import play.db.jpa.*;
 
 /*
  * Classe représentant un commentaire 
- * Contient
+ * Contient le commentaire, la date et le créateur.
  */
 @Entity
 public class Commentaire extends Model {

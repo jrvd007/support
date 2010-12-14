@@ -96,21 +96,6 @@ public class Application extends Controller {
 		mes();
 	}
 
-	public static void afficheRequete(Long id)
-	{
-		Requete requete = Requete.find("byId",id).first();
-		if(requete == null)
-		{
-			list(null);
-			return;
-		}
-		else
-		{
-		render(requete);
-		return;
-		}
-	}
-
     public static void commentaire(@Required long requete_id, @Required String commentaireText) {
         Requete req = Requete.findById(requete_id);
         req.addCommentaire(new Commentaire(commentaireText, user));
@@ -141,8 +126,7 @@ public class Application extends Controller {
 
         // Create a separate directory for this upload
         // Allows multiple uploads with same filename
-        File destdir = new File(Play.applicationPath + "/uploads/" +
-                                fichier.id);
+        File destdir = new File(Play.applicationPath + "/uploads/" + fichier.id);
         destdir.mkdir();
 
         // Move the temporary file to a permanent location

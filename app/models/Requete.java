@@ -51,7 +51,7 @@ public class Requete extends Model {
         return find("byCreateur", u).fetch();
     }
 
-    public static List<Requete> assignees(Usager u) {
+    public static List<Requete> parResponsable(Usager u) {
         return find("byResponsable", u).fetch();
     }
 

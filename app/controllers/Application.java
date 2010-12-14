@@ -30,7 +30,6 @@ public class Application extends Controller {
 
     private static void list(List requetes) {
     	renderArgs.put("categories", Requete.Categorie.values());
-        System.out.println(request.path);
         LinkedHashMap<String, String> urlmap = new LinkedHashMap();
         urlmap.put(Router.reverse("Application.mes").url, "Mes requêtes");
         urlmap.put(Router.reverse("Application.assignees").url, "Mes assignations");
@@ -44,7 +43,7 @@ public class Application extends Controller {
 
     @Check("isTechnicien")
     public static void assignees() {
-        list(Requete.assignees(user));
+        list(Requete.parResponsable(user));
     }
 
     @Check("isTechnicien")

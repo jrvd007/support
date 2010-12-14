@@ -27,7 +27,7 @@ public class RequeteTest extends UnitTest {
     @Test
     public void retrieveAssignees() {
         Usager vandoorn = Usager.find("byUsername", "vandoorn").first();
-        List<Requete> assignees = Requete.assignees(vandoorn);
+        List<Requete> assignees = Requete.parResponsable(vandoorn);
         assertEquals(assignees.size(), 1);
         // verify properties or add more?
     }

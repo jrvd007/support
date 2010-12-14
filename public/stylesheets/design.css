@@ -354,7 +354,7 @@ textarea
 	margin-top: 0px;
 }
 
-.commentaire
+.commentaire,.fichier
 {
 	float: left;
 	margin-left: 10px;
@@ -499,4 +499,5 @@ textarea
 {
 	float: left;
 	width: 100%;
+	margin-bottom: 10px;
 }

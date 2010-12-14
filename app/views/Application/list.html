@@ -114,8 +114,8 @@
 					#{if !requete.isFinalisee() && requete.createur == user}
 						<form action="@{Application.upload()}" method="POST" enctype="multipart/form-data" id = "fichierup">
             				<input type="hidden" name="requete_id" value="${requete.id}" />
-            				<input type="file" id="newFile" name="newFile" />
-            				<input type="submit" value="Ajouter fichier" />
+            				<input type="file" onChange="enable_button()" id="newFile" name="newFile" />
+            				<input id="ajouterFichier" type="submit" value="Ajouter fichier" disabled="disabled"/>
           				</form>
 	        		#{/if}
 
@@ -152,5 +152,11 @@
 	function select_all() {
 		 document.getElementById('commentaireText').focus();
 		 document.getElementById('commentaireText').select();
+	}
+</script>
+
+<script>
+	function enable_button(){
+		document.getElementById('ajouterFichier').disabled = false;
 	}
 </script>

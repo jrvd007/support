@@ -27,9 +27,9 @@
 			</div>
 
 			<!-- Liste de requête -->
-   			#{list items:requetes, as: 'requete'}
+			#{list items:requetes, as: 'requete'}
 			<div class = "seperation">
-        		<li class="header">
+				<li class="header">
 					<a href="#" class = "requetea">
 						%{createur = requete.createur;}%
 						<span class = "idreq">${requete.id}</span>
@@ -40,7 +40,7 @@
 						<span class = "statut">${requete.statut?: "Non Assignée"}</span>
 						<span class = "date">${requete.creation.format('dd MMMM yyyy', 'fr')}</span>
 					</a>
- 				</li>
+				</li>
 
  				<div class = "floatleft">
 					<!-- Boutons d'assignation ou de finalisation et d'abandon -->
@@ -68,18 +68,18 @@
 						<form id = "nouvelleCat" action="@{Application.changerCategorie()}" name = "nouvelleCat" method = "POST">
 							<input type = "hidden" name = "requete_id" value = "${requete.id}" />
 							<select name="nouvcategorie">
-			    			#{list items:categories, as: 'categorie'}
-			    				<option value="${categorie}">${categorie}</option>
-			    			#{/list}
- 							</select>
+							#{list items:categories, as: 'categorie'}
+							<option value="${categorie}">${categorie}</option>
+							#{/list}
+							</select>
 							<input type = "submit" value = "Changer la catégorie" />
 						</form>
 					#{/secure.check}
 					#{/if}
-	
+
 					<!-- Affichage de la description -->
-					<p class = "para"><span class = "expl">Description:</span><br /><span class ="desc">${requete.description}</span></p>
-	
+					<p class = "para"><span class = "expl">Description:</span><br /><span class="desc wrap">${requete.description}</span></p>
+
 					<!-- Affichage des commentaires -->
 					<ul class = "commentaires">
 						<span class = "expl">Commentaires:</span><br />
@@ -87,23 +87,23 @@
 							#{list items:requete.commentaires, as: 'commentaire'}
 								<li class="commentaire">
 									<span class="datecomment">${commentaire.date.format('dd/MM/yyyy H:mm ', 'fr')} (${commentaire.createur.username}) :</span>
-        							<span class="commentaire_text">${commentaire.text}</span>
-      							</li>
- 			     			#{/list}
-    					#{/if}
+									<span class="commentaire_text wrap">${commentaire.text}</span>
+								</li>
+							#{/list}
+						#{/if}
 						#{else}
 							<p class = "pdesc">Aucun commentaire.</p>
 						#{/else}
-    					</ul>
+					</ul>
 		
 					<!-- Bloc pour l'ajout de nouveaux commentaires (possible si la requête n'est pas encore finalisée ou abandonnée)
 						 Seul le créateur et le responsable peuvent commenter une requête -->
 					#{if !requete.isFinalisee() && (user == requete.createur || user == requete.responsable)}
-    					<form id="nouveauCommentaire" action="@{Application.commentaire()}" name = "nouveauCommentaire" method="POST">
-        					<input type="hidden" name="requete_id" value="${requete.id}" />
-        					<textarea name="commentaireText" id="commentaireText" rows=3 cols=40 onclick="select_all()">Nouveau commentaire.</textarea><br />
-      						<input type="submit" value="Ajouter commentaire" />
- 		     			</form>
+						<form id="nouveauCommentaire" action="@{Application.commentaire()}" name = "nouveauCommentaire" method="POST">
+							<input type="hidden" name="requete_id" value="${requete.id}" />
+							<textarea name="commentaireText" id="commentaireText" rows=3 cols=40 onclick="select_all()">Nouveau commentaire.</textarea><br />
+							<input type="submit" value="Ajouter commentaire" />
+						</form>
 					#{/if}
 					
 					<!-- Bloc pour les fichiers -->
@@ -115,26 +115,21 @@
 					#{/if}
 					#{else}
 						<!-- A ajouter : pouvoir downloader les fichiers -->
+						#{list items:requete.fichiers, as: 'fichier'}
+							<li class="fichier">
+								<span class="fichiersp">${fichier.file}</span>
+      						</li>
+						#{/list}
 					#{/else}
-						#{if requete.fichiers.size() >= 1}
-							#{list items:requete.fichiers, as: 'fichier'}
-								<li class="fichier">
-        							<span class="fichiersp">${fichier.file}</span>
-      							</li>
- 			     			#{/list}
-    					#{/if}
-						#{else}
-							<p class = "pdesc">Aucun fichier.</p>
-						#{/else}
 					</ul>
 					<!-- Upload de fichier pour les createurs des requetes -->
 					#{if !requete.isFinalisee() && requete.createur == user}
 						<form action="@{Application.upload()}" method="POST" enctype="multipart/form-data" id = "fichierup">
-            				<input type="hidden" name="requete_id" value="${requete.id}" />
-            				<input type="file" onChange="enable_button()" id="newFile" name="newFile" />
-            				<input id="ajouterFichier" type="submit" value="Ajouter fichier" disabled="disabled"/>
-          				</form>
-	        		#{/if}
+							<input type="hidden" name="requete_id" value="${requete.id}" />
+							<input type="file" onChange="enable_button()" id="newFile" name="newFile" />
+							<input id="ajouterFichier" type="submit" value="Ajouter fichier" disabled="disabled"/>
+						</form>
+					#{/if}
 
 					<!-- Affichage de la date de fermeture de la requête -->
 					#{if requete.isFinalisee()}
@@ -144,7 +139,7 @@
 					#{/if}
 				</div>
 			</div>
-	    	#{/list}
+			#{/list}
 		</ul>
 	</div>
 #{/else}
@@ -163,7 +158,6 @@
 	});
 </script>
 
-
 <!-- Script pour sélectionner le texte de commentaire en entier -->
 <script>
 	function select_all() {
@@ -178,3 +172,4 @@
 		document.getElementById('ajouterFichier').disabled = false;
 	}
 </script>
+

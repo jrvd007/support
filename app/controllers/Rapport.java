@@ -30,11 +30,6 @@ public class Rapport{
 		for(JPABase tech : Technicien.findAll()){
 			techs.add(new TechStats((Technicien) tech));
 		}
-		
-		assignees = 32;
-		nonAssignees = 12;
-		completees = 104;
-		abandonnees = 11;
 	}
 	
 	// Statistiques globales
@@ -51,13 +46,13 @@ public class Rapport{
 		// Constructeur
 		public TechStats(Technicien tech){
 			nom = tech.prenom + " "+ tech.nom + "  ("+tech.username+")";
-			entraitement = 5;//Requete.count("byResponsableAndStatut", tech, Requete.Statut.Assignée);
-			completees = 16; //Requete.count("byResponsableAndStatut", tech, Requete.Statut.Complétée);
-			abandonnees = 1; //Requete.count("byResponsableAndStatut", tech, Requete.Statut.Abandonnée);
+			entraitement = Requete.count("byResponsableAndStatut", tech, Requete.Statut.Assignée);
+			completees = Requete.count("byResponsableAndStatut", tech, Requete.Statut.Complétée);
+			abandonnees = Requete.count("byResponsableAndStatut", tech, Requete.Statut.Abandonnée);
 			
 			categories = new LinkedList<CatStats>();
 			for(Requete.Categorie cat : Requete.Categorie.values()){
-				categories.add(new CatStats(cat, 4 /*Requete.count("byResponsableAndStatutAndCategorie", tech, Requete.Statut.Complétée, cat)*/));
+				categories.add(new CatStats(cat, Requete.count("byResponsableAndStatutAndCategorie", tech, Requete.Statut.Complétée, cat)));
 			}
 		}
 		// Statistiques du tech

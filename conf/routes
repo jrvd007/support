@@ -2,8 +2,8 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /requetes/mes                           Application.mes
-GET     /requetes/assignees                     Application.assignees
+GET     /requetes/mes_requetes                  Application.mes
+GET     /requetes/mes_assignations              Application.assignees
 GET     /requetes/non_assignees                 Application.nonAssignees
 GET     /                                       Application.mes
 GET     /requetes/choose_view                   Application.chooseView
@@ -14,8 +14,8 @@ GET	    /requetes/finalisereq			        Application.finaliserRequete
 GET 	/requetes/abandonnereq			        Application.abandonnerRequete
 GET	    /requetes/assignereq		            Application.assignerRequete
 
-POST    /requetes/nouvelle                      Application.creerRequete
-GET     /requetes/nouvelle                      Application.nouvelleRequete
+POST    /nouvelle_requete     		            Application.creerRequete
+GET     /nouvelle_requete           		    Application.nouvelleRequete
 
 POST 	/requetes/changerCategorie	        	Application.changerCategorie
 

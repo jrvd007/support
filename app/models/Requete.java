@@ -51,7 +51,7 @@ public class Requete extends Model {
         return find("byCreateur", u).fetch();
     }
 
-    public static List<Requete> assignees(Usager u) {
+    public static List<Requete> parResponsable(Usager u) {
         return find("byResponsable", u).fetch();
     }
 
@@ -81,11 +81,9 @@ public class Requete extends Model {
     	return (statut == Statut.Complétée || statut == Statut.Abandonnée);
     }
 
-    public Commentaire addCommentaire(String text) {
-        Commentaire commentaire = new Commentaire(text);
+    public void addCommentaire(Commentaire commentaire) {
         commentaires.add(commentaire);
         save();
-        return commentaire;
     }
 
     public Fichier addFile(Fichier fichier) {

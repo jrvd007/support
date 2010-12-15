@@ -9,11 +9,17 @@ import play.db.jpa.JPABase;
 import models.Requete;
 import models.Technicien;
 
+/*
+ * Classe pour générer un rapport
+ * Toutes les informations devant apparaitre dans le rapport sont contenus dans cette classe.
+ */
 public class Rapport{
+	// Génère un rapport et le retourne
 	public static Rapport genere(){
 		return new Rapport();
 	}
 	
+	// Constructeur
 	private Rapport(){
 		assignees = Requete.count("byStatut", Requete.Statut.Assignée);
 		nonAssignees = Requete.count("byResponsableIsNull");
@@ -26,13 +32,18 @@ public class Rapport{
 		}
 	}
 	
+	// Statistiques globales
 	public long assignees;
 	public long nonAssignees;
 	public long completees;
 	public long abandonnees;
+	
+	// Liste contenant les stats de chaque technicien
 	List<TechStats> techs;
 	
+	// Classe contenant les statistiques pour un technicien
 	public class TechStats{
+		// Constructeur
 		public TechStats(Technicien tech){
 			nom = tech.prenom + " "+ tech.nom + "  ("+tech.username+")";
 			entraitement = Requete.count("byResponsableAndStatut", tech, Requete.Statut.Assignée);
@@ -44,17 +55,23 @@ public class Rapport{
 				categories.add(new CatStats(cat, Requete.count("byResponsableAndStatutAndCategorie", tech, Requete.Statut.Complétée, cat)));
 			}
 		}
+		// Statistiques du tech
 		public String nom;
 		public long entraitement;
 		public long completees;
 		public long abandonnees;
+		
+		// Liste contenant les stats pour chaque catégorie
 		public List<CatStats> categories;
 		
+		// Classe contenant des stats sur les requêtes traitées par catégories
 		public class CatStats{
+			// Constructeur.
 			public CatStats(Requete.Categorie categorie, long count){
 				this.nom = categorie.toString();
 				this.count = count;
 			}
+			// Stats sur la catégorie.
 			public String nom;
 			public long count;
 		}

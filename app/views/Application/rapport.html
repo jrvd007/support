@@ -2,33 +2,40 @@
 #{set title:'Rapport' /}
 #{set section:"Rapport détaillé" /}
 
+<!-- HTML pour afficher un rapport (Rapport.java) -->
 <div id = "rapport">
 	<span class="titre">Rapport Général :</span>
+	
+	<!-- Affichage du rapport général -->
 	<ul id = "rapportgen">
-	<li><span class = "explrap">Non assignées</span><span class = "detrap">: ${rapport.nonAssignees}</span></li>
-	<li><span class = "explrap">En traitement</span><span class = "detrap">: ${rapport.assignees}</span></li>
-	<li><span class = "explrap green">Complétées</span><span class = "detrap">: ${rapport.completees}</span></li>
-	<li><span class = "explrap red">Abandonnées</span><span class = "detrap">: ${rapport.abandonnees}</span></li>
+		<li><span class = "explrap">Non assignées</span><span class = "detrap">: ${rapport.nonAssignees}</span></li>
+		<li><span class = "explrap">En traitement</span><span class = "detrap">: ${rapport.assignees}</span></li>
+		<li><span class = "explrap green">Complétées</span><span class = "detrap">: ${rapport.completees}</span></li>
+		<li><span class = "explrap red">Abandonnées</span><span class = "detrap">: ${rapport.abandonnees}</span></li>
 	</ul>
+
+	<!-- Affichage du rapport détaillé par technicien -->
 	<span class="titre">Rapport détaillé par technicien :</span>
 	<ul id = "rapportdet">	
-	#{list items:rapport.techs, as: 'tech'}
+		#{list items:rapport.techs, as: 'tech'}
 		<li class="tech">${tech.nom}</li>
-		<ul class = "regrouprap">
-			<li class = "rapelement">Statut des requêtes</li>
-			<ul class = "rapdonnees">
-				<li><span class = "explrap">En traitement</span><span class = "detrap">: ${tech.entraitement}</span></li>
-				<li><span class = "explrap green">Complétées</span><span class = "detrap">: ${tech.completees}</span></li>
-				<li><span class = "explrap red">Abandonnées</span><span class = "detrap">: ${tech.abandonnees}</span></li>
+			<ul class = "regrouprap">
+				<!-- Statistiques sur le status des requêtes -->
+				<li class = "rapelement">Statut des requêtes</li>
+				<ul class = "rapdonnees">
+					<li><span class = "explrap">En traitement</span><span class = "detrap">: ${tech.entraitement}</span></li>
+					<li><span class = "explrap green">Complétées</span><span class = "detrap">: ${tech.completees}</span></li>
+					<li><span class = "explrap red">Abandonnées</span><span class = "detrap">: ${tech.abandonnees}</span></li>
+				</ul>
+				<!-- Statistique sur les requêtes par catégorie -->
+				<li class = "rapelement">Requêtes traitées par catégorie</li>
+				<ul class = "rapdonnees">
+					#{list items:tech.categories, as: 'categorie'}
+					<li><span class = "explrap">${categorie.nom}</span><span class = "detrap">: ${categorie.count}</span></li>
+					#{/list}
+				</ul>
 			</ul>
-			<li class = "rapelement">Requêtes traitées par catégorie</li>
-			<ul class = "rapdonnees">
-				#{list items:tech.categories, as: 'categorie'}
-				<li><span class = "explrap">${categorie.nom}</span><span class = "detrap">: ${categorie.count}</span></li>
-				#{/list}
-			</ul>
-		</ul>
-	#{/list}
+		#{/list}
 	</ul>
 </div>
 

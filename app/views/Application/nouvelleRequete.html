@@ -24,10 +24,22 @@
 		<textarea name="description" rows="10" cols="60" class = "seperate">${flash.description}</textarea><br />
 		<!-- Fichiers -->
     Fichiers :<span class="error">#{error 'fichiers' /}</span><br />
-    <div id="#fichiers">
-      <input type="file" name="files[0]" id="files[0]">
+    <div id="fichiers">
+      <input type="file" name="files[0]" id="files_0">
     </div>
 		<!-- Bouton de soumission -->
 		<input type="submit" value="Créer requête!"/><br />
 	</form>
+  <script>
+    var newField = function() {
+      var nextField = $('<input type="file">');
+      var id = parseInt(this.id.substring(6)) + 1;
+      nextField[0].id = 'files_' + id;
+      nextField[0].name = 'files[' + id + ']';
+      $('#fichiers').append(nextField);
+      $(this).unbind('change');
+      nextField.change(newField);
+    };
+    $('#fichiers').children('input:last').change(newField);
+  </script>
 </div>

@@ -3,27 +3,26 @@
 #{set section:"Création d'une nouvelle requête" /}
 <!-- HTML pour la création d'une nouvelle requête -->
 <div id = "creation">
-	<form action="@{Application.creerRequete()}" method="POST">
+	<form action="@{Application.creerRequete()}" method="POST" enctype="multipart/form-data">
 		<!-- Bloc pour la sélection de la catégorie -->
 		<select name="categorie" class = "seperate">
-    		<option selected = "selected" value="">Choisissez une catégorie</option>
-    		#{list items:categories, as: 'categorie'}
-    		<option value="${categorie}" #{if categorie.toString().equals(flash.categorie)}selected = "selected"#{/if}>${categorie}</option>
-    		#{/list}
-  		</select>
+			<option selected = "selected" value="">Choisissez une catégorie</option>
+			#{list items:categories, as: 'categorie'}
+			<option value="${categorie}" #{if categorie.toString().equals(flash.categorie)}selected = "selected"#{/if}>${categorie}</option>
+			#{/list}
+		</select>
 
-  		<span class="error">#{error 'categorie' /}</span><br />
+		<span class="error">#{error 'categorie' /}</span><br />
 		<!-- Sujet -->
 		Sujet :
- 	 	<input type="text" name="sujet" value="${flash.sujet}" class = "seperate"/>
-  		<span class="error">#{error 'sujet' /}</span>
-  		<br />
+		<input type="text" name="sujet" value="${flash.sujet}" class = "seperate"/>
+		<span class="error">#{error 'sujet' /}</span>
+		<br />
 		<!-- Description -->
   		Description :<span class="error">#{error 'description' /}</span><br />
   		<textarea name="description" rows="10" cols="60" class = "seperate">${flash.description}</textarea><br />
 		<!-- Fichiers -->
 		Fichiers:<br />
-		<input type="file" onChange="enable_button()" id="newFile" name="newFile" class = "fichcreate"/><button type = "button" id = "ajouterFichier" disabled = "disabled" onclick = "add_file()">Ajouter fichier</button><br />
 		<!-- Bouton de soumission -->
 		<input type="submit" value="Créer requête!"/><br />
 	</form>
@@ -35,3 +34,4 @@
 		document.getElementById('ajouterFichier').disabled = false;
 	}
 </script>
+

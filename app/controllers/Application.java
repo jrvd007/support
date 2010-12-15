@@ -55,21 +55,21 @@ public class Application extends Controller {
 	public static void finaliserRequete(@Required long requete_id){
     	Requete requete = Requete.findById(requete_id);
 		requete.finaliser();
-		mes();
+		assignees();
 	}
 
     @Check("isTechnicien")
 	public static void abandonnerRequete(@Required long requete_id){
     	Requete requete = Requete.findById(requete_id);
 		requete.abandonner();
-		mes();
+		assignees();
 	}
 
     @Check("isTechnicien")
 	public static void assignerRequete(@Required long requete_id){
     	Requete requete = Requete.findById(requete_id);
 		requete.assignerTech((Technicien) user);
-		assignees();
+		nonAssignees();
 	}
 
 	public static void nouvelleRequete(){
@@ -83,7 +83,7 @@ public class Application extends Controller {
 		render();
 	}
 
-	public static void creerRequete(@Required String categorie, @Required String sujet, @Required String description){
+	public static void creerRequete(@Required String categorie, @Required String sujet, @Required String description, List<File> files){
 		if(validation.hasErrors())	{
             params.flash();
             validation.keep();
@@ -91,6 +91,25 @@ public class Application extends Controller {
 		}
 
 		Requete req = new Requete(user, Enum.valueOf(Requete.Categorie.class, categorie), sujet, description);
+
+        for (File newFile : files) {
+            if (newFile != null) {
+                Fichier fichier = new Fichier();
+                fichier.save();
+                File destdir = new File(Play.applicationPath + "/uploads/" + fichier.id);
+                destdir.mkdir();
+
+                // Move the temporary file to a permanent location
+                File dest = new File(destdir.getPath() + "/" + newFile.getName());
+                newFile.renameTo(dest);
+
+                fichier.setFile(dest);
+                fichier.save();
+
+                req.addFile(fichier);
+            }
+        }
+
 		req.save();
 		mes();
 	}
@@ -109,10 +128,6 @@ public class Application extends Controller {
 		mes();
 	}
 
-    public static void download(@Required long requete_id, @Required long fichier_id){
-    	
-    }
-    
     public static void upload(@Required long requete_id, @Required File newFile) {
     	if(validation.hasErrors()){
     		params.flash();
@@ -131,10 +146,10 @@ public class Application extends Controller {
         // Move the temporary file to a permanent location
         File dest = new File(destdir.getPath() + "/" + newFile.getName());
         newFile.renameTo(dest);
-        System.out.println(dest);
 
         // Add the new file location to the request
-        fichier.file = dest;
+        fichier.setFile(dest);
+        fichier.save();
         req.addFile(fichier);
 
         mes();

@@ -10,9 +10,11 @@
 		Aucune requête.
 	</p>
 #{/if}
+
 <!-- S'il y a des requêtes, on les affiche -->
 #{else}
 	<div id = "accordion">
+<<<<<<< HEAD
 		<ul class = "requetes">
 			<!-- Bloc de la "légende" -->
 			<div class = "seperation">
@@ -141,35 +143,157 @@
 			</div>
 	    	#{/list}
 		</ul>
+=======
+	<ul class = "requetes">
+	<div class = "seperation">
+	<li class = "requetehead">
+		<span class = "idreqhead">#</span>
+		<span class = "createur">Créateur</span>
+		<span class = "sujet">Sujet</span>
+		<span class = "categorie">Catégorie</span>
+		<span class = "statut">Statut</span>
+		<span class = "datehead">Date</span>
+	</li>
+	</div>
+
+	<!-- Liste des requêtes -->
+    #{list items:requetes, as: 'requete'}
+	<div class = "seperation">
+        <li class="header">
+			<a href="#" class = "requetea">
+				%{createur = requete.createur;}%
+				<span class = "idreq">${requete.id}</span>
+				<span class = "createur">${createur.prenom} ${createur.nom}</span>
+				%{suj = requete.sujet.length()>20? requete.sujet.substring(0,20)+"..." : requete.sujet;}%
+				<span class = "sujet">${suj}</span>
+				<span class = "categorie">${requete.categorie}</span>
+				<span class = "statut">${requete.statut?: "Non Assignée"}</span>
+				<span class = "date">
+            			${requete.creation.format('dd MMMM yyyy', 'fr')}
+				</span>
+			</a>
+ 	</li>
+ 	<div class = "floatleft">
+		<!-- Boutons d'assignation, de finalisation ou d'abandon -->
+		#{secure.check 'isTechnicien'}
+		<div class = "finass">
+			<!-- Possibilité pour un technicien de s'assigner une requete si elle n'est pas déjà assignée -->
+			#{if requete.responsable == null}
+				<a href="@{Application.assignerRequete(requete.id)}">M'assigner cette requête</a>
+			#{/if}
+			<!-- Possibilité de finaliser une requête si elle n'est pas déjà finalisée -->
+			#{elseif !requete.isFinalisee()}
+				<a href="@{Application.finaliserRequete(requete.id)}">Finaliser requête</a>
+				<a href="@{Application.abandonnerRequete(requete.id)}">Abandonner requête</a>
+			#{/elseif}
+		</div>
+		#{/secure.check}
+
+		<!-- Affichage du sujet -->
+		<p class = "para"><span class = "expl">Sujet:</span><br /><span class ="desc">${requete.sujet}</span></p>
+
+		<!-- Affichage de la catégorie -->
+		<p class = "para"><span class = "expl">Catégorie:</span><br /><span class ="desc">${requete.categorie}</span></p>
+
+		<!-- Possibilité de changer la catégorie pour un technicien -->
+		#{secure.check 'isTechnicien'}
+		#{if !requete.isFinalisee()}
+		<form id = "nouvelleCat" action="@{Application.changerCategorie()}" name = "nouvelleCat" method = "POST">
+		<input type = "hidden" name = "requete_id" value = "${requete.id}" />
+		<select name="nouvcategorie">
+			#{list items:categories, as: 'categorie'}
+			<option value="${categorie}">${categorie}</option>
+			#{/list}
+ 		</select>
+		<input type = "submit" value = "Changer la catégorie" />
+		</form>
+		#{/if}
+		#{/secure.check}
+
+		<!-- Affichage de la description -->
+		<p class = "para"><span class = "expl">Description:</span><br /><span class ="desc">${requete.description}</span></p>
+
+		<!-- Affichage des commentaires -->
+		<span class = "expl">Commentaires:</span><br />
+    	    #{if requete.commentaires.size() >= 1}
+			<ul class = "commentaires">
+        	      #{list items:requete.commentaires, as: 'commentaire'}
+				  <li class="commentaire">
+				    <span class="datecomment">${commentaire.date.format('dd MMMM yyyy', 'fr')}:</span>
+				    <span class="commentaire_text">${commentaire.text}</span>
+				  </li>
+				  #{/list}
+    		 </ul>
+    		 #{/if}
+		     #{else}
+			     <p class = "pdesc">Aucun commentaire.</p>
+		     #{/else}
+
+			  <!-- Bloc pour l'ajout de nouveaux commentaires (possible si la requête n'est pas encore finalisée ou abandonnée)
+			       Seul le créateur et le responsable peuvent commenter une requête -->
+			 #{if !requete.isFinalisee()}
+    			<form id="nouveauCommentaire" action="@{Application.commentaire()}" name = "nouveauCommentaire" method="POST">
+        		<input type="hidden" name="requete_id" value="${requete.id}" />
+        		<textarea name="commentaireText" id="commentaireText" rows=3 cols=40 onclick="select_all()">Nouveau commentaire.</textarea><br />
+      			<input type="submit" value="Ajouter commentaire" />
+      			</form>
+			 #{/if}
+
+		<!-- Bloc pour les fichiers -->
+        <span class = "expl">Fichiers:</span><br />
+		  <!-- Bloc pour les download -->
+          #{if requete.fichiers.size() >= 1}
+              <ul id = "fichiers">
+              #{list items:requete.fichiers, as: 'fichier'}
+               <li class="fichier">
+              		<a href="/uploads/${fichier.id}/${fichier.file.getName()}">${fichier.file.getName()}</a>
+               </li>
+              #{/list}
+              </ul>
+          #{/if}
+          #{else}
+            <p class = "pdesc">Aucun fichier.</p>
+          #{/else}
+		  <!-- Bloc pour upload -->
+          #{if requete.createur == user}
+          <form action="@{Application.upload()}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="requete_id" value="${requete.id}" />
+            <input type="file" id="newFile" name="newFile" onChange="enable_button()"/>
+            <input type="submit" value="Ajouter un fichier" id="ajouterFichier" disabled="disabled"/>
+          </form>
+          #{/if}
+		</div>
+	</div>
+    #{/list}
+	</ul>
+>>>>>>> d91c9f993f28a55695d58ba46acb10eb6a142e62
 	</div>
 #{/else}
 
-<!-- Script pour l'accordion -->
 <script>
 	$(function() {
-		$( "#accordion" ).accordion({ header: 'li.header', collapsible: true, autoHeight: false });
+		$( "#accordion" ).accordion({ header: 'li.header', collapsible: true });
 	});
 </script>
 
-<!-- Script pour créer les boutons d'assignation, de finalisationet d'abandon -->
 <script>
 	$(function() {
 		$( "a", ".finass" ).button();
 	});
 </script>
 
-
-<!-- Script pour sélectionner le texte de commentaire en entier -->
-<script>
-	function select_all() {
-		 document.getElementById('commentaireText').focus();
-		 document.getElementById('commentaireText').select();
-	}
-</script>
-
 <!-- Script pour enabler le bouton d'ajout de fichier -->
 <script>
-	function enable_button(){
+    function enable_button(){
 		document.getElementById('ajouterFichier').disabled = false;
 	}
 </script>
+
+<!-- Script pour sélectionner le texte de commentaire en entier -->
+<script>
+    function select_all() {
+	     document.getElementById('commentaireText').focus();
+	     document.getElementById('commentaireText').select();
+	}
+</script>
+

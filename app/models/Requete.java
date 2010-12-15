@@ -45,6 +45,7 @@ public class Requete extends Model {
         this.sujet = sujet;
         this.description = description;
         this.creation = new Date();
+        this.fichiers = new ArrayList<Fichier>();
     }
 
     public static List<Requete> parCreateur(Usager u) {

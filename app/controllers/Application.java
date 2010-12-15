@@ -108,10 +108,6 @@ public class Application extends Controller {
 		req.save();
 		mes();
 	}
-
-    public static void download(@Required long requete_id, @Required long fichier_id){
-    	
-    }
     
     public static void upload(@Required long requete_id, @Required File newFile) {
     	if(validation.hasErrors()){
@@ -131,10 +127,10 @@ public class Application extends Controller {
         // Move the temporary file to a permanent location
         File dest = new File(destdir.getPath() + "/" + newFile.getName());
         newFile.renameTo(dest);
-        System.out.println(dest);
 
         // Add the new file location to the request
-        fichier.file = dest;
+        fichier.setFile(dest);
+        fichier.save();
         req.addFile(fichier);
 
         mes();

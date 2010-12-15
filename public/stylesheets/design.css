@@ -501,3 +501,11 @@ textarea
 	width: 100%;
 	margin-bottom: 10px;
 }
+
+.fichcreate
+{
+	float: left;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

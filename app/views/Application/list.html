@@ -112,7 +112,9 @@
 						#{if requete.fichiers.size() >= 1}
 							#{list items:requete.fichiers, as: 'fichier'}
 								<li class="fichier">
-        							<span class="fichiersp">${fichier.file}</span>
+        							<a href="/uploads/${fichier.id}/${fichier.file.getName()}">
+              							${fichier.file.getName()}
+            							</a>
       							</li>
  			     			#{/list}
     					#{/if}

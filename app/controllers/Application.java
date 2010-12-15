@@ -128,10 +128,6 @@ public class Application extends Controller {
 		mes();
 	}
 
-    public static void download(@Required long requete_id, @Required long fichier_id){
-
-    }
-
     public static void upload(@Required long requete_id, @Required File newFile) {
     	if(validation.hasErrors()){
     		params.flash();

@@ -2,46 +2,6 @@
 
 <!-- HTML global ("parent") -->
 <html>
-    <head>
-        <title>Système de Support | #{get 'title' /}</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/design.css'}">
-	<link type="text/css" href="@{'/public/stylesheets/custom-theme/jquery-ui-1.8.7.custom.css'}" rel="Stylesheet" />
-        #{get 'moreStyles' /}
-        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.4.4.min.js'}" charset="utf-8"></script>
-	<script src="@{'/public/javascripts/jquery-ui-1.8.7.custom.min.js'}"></script>
-        #{get 'moreScripts' /}
-    </head>
-    <body>
-	<div id = "main">
-		<div id = "top">
-      <h1><a href="@{Application.mes()}"><img src = "@{'/public/images/logo.png'}" alt = "Logo JCMSystemes" /></a></h1>
-		<ul id = "menu">
-			<li><a href ="@{Application.mes()}"><span>Requêtes</span></a></li>
-			<li><a href ="@{Application.nouvelleRequete()}"><span>Créer requête</span></a></li>
-			#{secure.check 'isTechnicien'}
-				<li><a href ="@{Application.rapport()}"><span>Générer Rapport</span></a></li>
-			#{/secure.check}
-      <li><a href ="@{Secure.logout()}"><span>Se déconnecter</span></a></li>
-		</ul>
-		</div>
-		<div id = "contentwrapper">
-			<div id = "content">
-				<div id ="contentcenter">
-				<div id ="contentcenter_top">
-				<h3>#{get 'section' /}</h3>
-					#{if requetes != null || choice!= null}
-						<div id = "rightchoose">
-              #{secure.check 'isTechnicien'}
-              <form name="chooseView">
-                <select name="view" onchange="window.location = document.chooseView.view.value;">
-                  #{list items:urlmap.keySet(), as:'url'}
-                  <option value="${url}"#{if (request.path.equals(url))} selected#{/if}>${urlmap[url]}</option>
-                  #{/list}
-								</select>
-							</form>
-              #{/secure.check}
 	<head>
 		<title>Système de Support | #{get 'title' /}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">

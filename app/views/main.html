@@ -18,7 +18,7 @@
 			<div id = "top">
 				<h1><a href="@{Application.mes()}"><img src = "@{'/public/images/logo.png'}" alt = "Logo JCMSystemes" /></a></h1>
 				<ul id = "menu">
-					<li><a href ="@{Application.mes()}" #{if request.path.contains("/requete")} class="active" #{/if}><span>Requêtes</span></a></li>
+					<li><a href ="@{Application.mes()}" #{if request.path.contains("/requetes") || request.path.equals("/")} class="active" #{/if}><span>Requêtes</span></a></li>
 					<li><a href ="@{Application.nouvelleRequete()}" #{if request.path.contains("/nouvelle")} class="active" #{/if}><span>Créer requête</span></a></li>
 					#{secure.check 'isTechnicien'}
 					<li><a href ="@{Application.rapport()}" #{if request.path.contains("/rapport")} class="active" #{/if}><span>Rapport</span></a></li>

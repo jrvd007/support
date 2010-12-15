@@ -7,6 +7,15 @@ Usager(grinshpun):
     username: grinshpun
     password: pass
 
+Usager(smithj):
+    nom: Smith
+    prenom: John
+    telephone: 514-444-2211
+    courriel: johnsmith@gmail.com
+    bureau: 13
+    username: smithj
+    password: pass
+
 Usager(beauchemin):
     nom: Beauchemin
     prenom: Cynthia

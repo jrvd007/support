@@ -2,3 +2,8 @@
 # For example, for French create a messages.fr file
 #
 validation.required=Ce champ est obligatoire.
+secure.username=Nom d'utilisateur:
+secure.password=Mot de passe:
+secure.signin=S'authentifier
+secure.remember=Se souvenir de moi
+

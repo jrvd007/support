@@ -6,4 +6,6 @@ secure.username=Nom d'utilisateur:
 secure.password=Mot de passe:
 secure.signin=S'authentifier
 secure.remember=Se souvenir de moi
+secure.logout=Vous avez été déconnecté avec succès.
+secure.error=Nom d'utilisateur ou mot de passe invalide.
 

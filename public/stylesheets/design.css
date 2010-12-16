@@ -502,6 +502,20 @@ textarea
 	margin-bottom: 10px;
 }
 
+#fichierscre
+{
+	float: left;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+#fichierscre input
+{
+	float: left;
+	width: 100%;
+	margin-bottom: 5px;
+
 .wrap
 {
 	white-space: pre-wrap;

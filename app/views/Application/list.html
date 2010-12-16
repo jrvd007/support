@@ -116,7 +116,7 @@
               <ul id = "fichiers">
               #{list items:requete.fichiers, as: 'fichier'}
                <li class="fichier">
-              		<a href="/uploads/${fichier.id}/${fichier.file.getName()}">${fichier.file.getName()}</a>
+              		<a href = "/uploads/${fichier.id}/${fichier.file.getName()}}">${fichier.file.getName()}</a>
                </li>
               #{/list}
               </ul>

@@ -1,7 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 #{set section:"Création d'une nouvelle requête" /}
-
+<script>
+	var id = 0;
+</script>
 <!-- HTML pour la création d'une nouvelle requête -->
 <div id = "creation">
 	<form action="@{Application.creerRequete()}" method="POST" enctype="multipart/form-data">
@@ -20,26 +22,34 @@
 		<span class="error">#{error 'sujet' /}</span>
 		<br />
 		<!-- Description -->
-		Description :<span class="error">#{error 'description' /}</span><br />
-		<textarea name="description" rows="10" cols="60" class = "seperate">${flash.description}</textarea><br />
+  		Description :<span class="error">#{error 'description' /}</span><br />
+  		<textarea name="description" rows="10" cols="60" class = "seperate">${flash.description}</textarea><br />
 		<!-- Fichiers -->
-    Fichiers :<span class="error">#{error 'fichiers' /}</span><br />
-    <div id="fichiers">
-      <input type="file" name="files[0]" id="files_0">
-    </div>
+		Fichiers:<br />
+    		<div id="fichierscre">
+     			<input type="file" name="files[0]" id="files_0" class = "fichcreate">
+    		</div>
 		<!-- Bouton de soumission -->
 		<input type="submit" value="Créer requête!"/><br />
 	</form>
   <script>
     var newField = function() {
       var nextField = $('<input type="file">');
-      var id = parseInt(this.id.substring(6)) + 1;
+      id = id + 1;
       nextField[0].id = 'files_' + id;
       nextField[0].name = 'files[' + id + ']';
-      $('#fichiers').append(nextField);
+      $('#fichierscre').append(nextField);
       $(this).unbind('change');
       nextField.change(newField);
     };
-    $('#fichiers').children('input:last').change(newField);
+    $('#fichierscre').children('input:last').change(newField);
   </script>
 </div>
+
+
+<script>
+	function enable_button(){
+		document.getElementById('ajouterFichier').disabled = false;
+	}
+</script>
+

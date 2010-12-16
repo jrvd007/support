@@ -1,6 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 #{set section:"Création d'une nouvelle requête" /}
+<script>
+	var id = 0;
+</script>
 <!-- HTML pour la création d'une nouvelle requête -->
 <div id = "creation">
 	<form action="@{Application.creerRequete()}" method="POST" enctype="multipart/form-data">
@@ -23,9 +26,24 @@
   		<textarea name="description" rows="10" cols="60" class = "seperate">${flash.description}</textarea><br />
 		<!-- Fichiers -->
 		Fichiers:<br />
+    		<div id="fichierscre">
+     			<input type="file" name="files[0]" id="files_0" class = "fichcreate">
+    		</div>
 		<!-- Bouton de soumission -->
 		<input type="submit" value="Créer requête!"/><br />
 	</form>
+  <script>
+    var newField = function() {
+      var nextField = $('<input type="file">');
+      id = id + 1;
+      nextField[0].id = 'files_' + id;
+      nextField[0].name = 'files[' + id + ']';
+      $('#fichierscre').append(nextField);
+      $(this).unbind('change');
+      nextField.change(newField);
+    };
+    $('#fichierscre').children('input:last').change(newField);
+  </script>
 </div>
 
 
